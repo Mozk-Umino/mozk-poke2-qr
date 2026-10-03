@@ -53,16 +53,18 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 
 番号を記憶だけで書くと間違えやすい。次の順で確認する。
 
-1. **コード実行が使えるなら** `scripts/lookup.py` を使う（英語名かセット番号で検索、`--check` でデッキ全体を検証）
+1. **コード実行が使えるなら** `scripts/lookup.py` を使う（日本語名・英語名・セット番号で検索、`--check` でデッキ全体を検証）
    ```
-   python3 scripts/lookup.py "Pikachu ex" "Professor's Research"
+   python3 scripts/lookup.py ピカチュウ 博士の研究 "Giant Cape"
    python3 scripts/lookup.py --check "B1a-24x2.A1-98x2...."
    ```
-2. **Web取得だけ使えるなら** セットごとのJSONを見る（`set`・`number`・`name` が並んでいる）
+   日本語名はページと同じ変換ルールで出る。「日本語名未登録」と出たカードはページでも英語名で表示される
+2. **Web取得だけ使えるなら** セットごとのJSONを見る（`set`・`number`・`name`(英語) が並んでいる）
    `https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards/<セットコード>.min.json`
+   トレーナーズの日本語名は `https://raw.githubusercontent.com/Mozk-Umino/mozk-poke2-qr/main/data/names-ja.json`
 3. **どちらも使えないなら** 記憶で書き、出力に「番号は未確認。ページのカード名が想定と違えば教えてください」と添える
 
-カードDBの名前は英語。日本語名との対応は自分の知識で行い、迷うカードは英語名も併記してユーザーに確認する。
+カードDBの元データは英語名。ユーザーへの出力は日本語名で書き、日本語名が未登録・不確かなカードは英語名も併記する。
 DBに見つからない新カードは、DBの更新待ちの可能性があるとユーザーに伝える。
 
 ## 出力の型
@@ -93,6 +95,7 @@ DBに見つからない新カードは、DBの更新待ちの可能性がある�
 
 - **QR画像を保存** → ゲームの「コードを読み取る」で画像から読み取る（スマホだけで完結）
 - PCで開いた場合は、画面のQRをスマホのカメラで読む
-- **まとめ画像を保存**（デッキ名・一覧・QRを1枚にした画像）、**Markdown / HTML をコピー**（ブログ用）
+- **まとめ画像を保存**（デッキ名・一覧・QRを1枚にした画像）、**Markdown / HTML をコピー**（ブログ用）。カード名は日本語で出る
+- カード検索は日本語名（ひらがなでも可）・英語名・セット番号で使える
 - ページ下の「デッキを作る・直す」で、カードの追加・削除やエネルギー変更ができ、URLも更新される
 - ゲームのQRの中身（Base64）を貼れば、そのデッキのURLにもできる

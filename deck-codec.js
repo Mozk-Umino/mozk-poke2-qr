@@ -131,6 +131,8 @@ export function decodePayload(payload) {
 export function normalizeName(value) {
   return String(value)
     .normalize("NFKC")
+    // ひらがな → カタカナ（「ぴかちゅう」でも「ピカチュウ」に当たるように）
+    .replace(/[\u3041-\u3096]/g, (char) => String.fromCharCode(char.charCodeAt(0) + 0x60))
     .replace(/[’‘]/g, "'")
     .replace(/[‐‑–—]/g, "-")
     .replace(/\s+/g, " ")
@@ -162,13 +164,20 @@ function pushTo(map, key, record) {
   else map.set(key, [record]);
 }
 
+// 表示用の名前: 日本語名があればそちら
+export function displayName(card) {
+  return card.ja ?? card.name;
+}
+
 export function cardCode(card) {
   return `${card.set}-${card.number}`;
 }
 
 export class CardDatabase {
-  constructor(rawRecords) {
+  // localize(record) は日本語名（なければ null）を返す関数
+  constructor(rawRecords, { localize } = {}) {
     this.records = rawRecords.map(parseRecord).filter(Boolean);
+    for (const record of this.records) record.ja = localize?.(record) ?? null;
     this.byId = new Map();
     this.byCode = new Map();
     for (const record of this.records) {
@@ -203,7 +212,11 @@ export class CardDatabase {
       const key = `${record.type}:${record.id}`;
       if (seen.has(key)) continue;
       const code = cardCode(record).toLowerCase();
-      if (normalizeName(record.name).includes(normalized) || code === normalized) {
+      const matches =
+        code === normalized ||
+        normalizeName(record.name).includes(normalized) ||
+        (record.ja && normalizeName(record.ja).includes(normalized));
+      if (matches) {
         seen.add(key);
         results.push(this.describe(record.id, record.type));
       }
@@ -297,7 +310,7 @@ export function buildDeck({ name = "", energyTypes = [], cards = [], errors: inp
   const perName = new Map();
   for (const card of [...pokemon, ...trainers]) {
     const key = normalizeName(card.name);
-    perName.set(key, { name: card.name, count: (perName.get(key)?.count ?? 0) + card.count });
+    perName.set(key, { name: displayName(card), count: (perName.get(key)?.count ?? 0) + card.count });
   }
   for (const { name: cardName, count } of perName.values()) {
     if (count > 2) errors.push(`「${cardName}」が合計${count}枚あります（同名カードは2枚まで）`);

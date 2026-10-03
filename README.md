@@ -36,6 +36,19 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 `skill/pokepoke-deck-url.zip` を claude.ai の 設定 → Capabilities（機能）→ Skills からアップロードする。
 スキルの中身は `skill/pokepoke-deck-url/`。中身を変えたら `npm run build:skill` でzipを作り直してアップロードし直す。
 
+## 日本語名
+
+カードDBは英語名なので、ページを開いたときに日本語名へ変換している。
+
+- **ポケモン**: `data/species-ja.json`（[PokeAPI](https://github.com/PokeAPI/pokeapi) のポケモン名）と、`ja-names.js` のルール（ex・メガ・アローラ等・ロケット団の）で自動変換。新弾で新しいポケモンが出ても基本的に手入れ不要。ルールで変換できないもの（フォルム違いなど）だけ `data/names-ja.json` の `pokemon` に書く
+- **トレーナーズ**: `data/names-ja.json` の `trainers` に1枚ずつ書く。新弾のたびに追加が必要
+- 未登録のカードは英語名で表示される（壊れはしない）
+
+### 自動チェック
+`.github/workflows/check-names.yml` が毎週月曜に未登録カードを調べ、あれば Issue「日本語名が未登録のカードがあります」を作る（または更新する）。全部登録されると Issue は自動で閉じる。Actions タブから手動実行もできる。
+
+追加するときは `data/names-ja.json` に `"英語名": "日本語名"` を足す。Claude に「mozk-poke2-qr の未登録カードを日本語化して」と頼んでもよい。
+
 ## しくみ
 
 QRの中身はBase64文字列で、デコードするとこうなる（数値はビッグエンディアン）。
@@ -60,6 +73,8 @@ u8  エネルギー種類 （1草 2炎 3水 4雷 5超 6闘 7悪 8鋼）
 |---|---|
 | `index.html` / `style.css` / `app.js` | ページ |
 | `deck-codec.js` | QRの中身・デッキURLの読み書きとデッキのチェック（DOM非依存） |
+| `ja-names.js` / `data/` | 日本語名の変換 |
+| `scripts/check-names.mjs` | 日本語名が未登録のカードの一覧を出す |
 | `vendor/qrcode.js` | [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)（MIT） |
 | `skill/` | Claude 用スキル |
 | `test/` | `npm test` で実行 |

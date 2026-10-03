@@ -6,11 +6,13 @@ import {
   deckFromPayload,
   deckQuery,
   DECK_SIZE,
+  displayName,
   ENERGY_TYPES,
   energyLabel,
   parseCardList,
   parseDeckQuery,
 } from "./deck-codec.js";
+import { JapaneseNames } from "./ja-names.js";
 
 const $ = (id) => document.getElementById(id);
 const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
@@ -59,7 +61,7 @@ function writeEditor({ name, energyTypes, cards }) {
     .map((card) => {
       const record = database?.lookup(card.set, card.number);
       const line = `${cardCode(card)}${card.count > 1 ? `x${card.count}` : ""}`;
-      return record ? `${line.padEnd(12)} # ${record.name}` : line;
+      return record ? `${line.padEnd(12)} # ${displayName(record)}` : line;
     })
     .join("\n");
 }
@@ -166,7 +168,7 @@ function deckCardCanvas(deck) {
       context.font = `bold 26px ${FONT}`;
       context.fillText(`${card.count}`, pad + 4, y + 26);
       context.font = `26px ${FONT}`;
-      context.fillText(fitText(context, card.name, listWidth - 170), pad + 40, y + 26);
+      context.fillText(fitText(context, displayName(card), listWidth - 170), pad + 40, y + 26);
       context.fillStyle = "#8a90a3";
       context.font = `20px ${FONT}`;
       context.textAlign = "right";
@@ -237,7 +239,7 @@ function countOf(cards) {
 }
 
 function deckMarkdown(deck) {
-  const lines = (cards) => cards.map((card) => `- ${card.name} ×${card.count}（${cardCode(card)}）`);
+  const lines = (cards) => cards.map((card) => `- ${displayName(card)} ×${card.count}（${cardCode(card)}）`);
   return [
     `## ${deck.name || "デッキ"}`,
     "",
@@ -258,7 +260,7 @@ function deckMarkdown(deck) {
 
 function deckHtml(deck) {
   const items = (cards) =>
-    cards.map((card) => `    <li>${escapeHtml(card.name)} ×${card.count}（${cardCode(card)}）</li>`).join("\n");
+    cards.map((card) => `    <li>${escapeHtml(displayName(card))} ×${card.count}（${cardCode(card)}）</li>`).join("\n");
   return [
     `<div class="pokepoke-deck">`,
     `  <h3>${escapeHtml(deck.name || "デッキ")}</h3>`,
@@ -276,12 +278,19 @@ function deckHtml(deck) {
 // ---------------------------------------------------------------------------
 // 表示
 
+// 日本語名があれば日本語名 + 小さく英語名
+function nameCell(card) {
+  return card.ja
+    ? `${escapeHtml(card.ja)} <span class="en">${escapeHtml(card.name)}</span>`
+    : escapeHtml(card.name);
+}
+
 function cardTable(title, cards) {
   if (cards.length === 0) return "";
   return `<div class="group-title">${title} ${countOf(cards)}枚</div>
     <table><tbody>${cards
       .map(
-        (card) => `<tr><td class="num">${card.count}</td><td>${escapeHtml(card.name)}</td><td class="code">${escapeHtml(cardCode(card))}</td></tr>`,
+        (card) => `<tr><td class="num">${card.count}</td><td>${nameCell(card)}</td><td class="code">${escapeHtml(cardCode(card))}</td></tr>`,
       )
       .join("")}</tbody></table>`;
 }
@@ -359,9 +368,9 @@ function renderSearch() {
     ? `<table><tbody>${results
         .map(
           (card) => `<tr>
-            <td>${escapeHtml(card.name)}<br><span class="note">${card.type === "pokemon" ? "ポケモン" : "トレーナーズ"}</span></td>
+            <td>${nameCell(card)}<br><span class="note">${card.type === "pokemon" ? "ポケモン" : "トレーナーズ"}</span></td>
             <td class="code">${escapeHtml(cardCode(card))}</td>
-            <td class="num"><button type="button" class="small" data-add="${escapeHtml(cardCode(card))}" data-name="${escapeHtml(card.name)}">＋</button></td>
+            <td class="num"><button type="button" class="small" data-add="${escapeHtml(cardCode(card))}" data-name="${escapeHtml(displayName(card))}">＋</button></td>
           </tr>`,
         )
         .join("")}</tbody></table>`
@@ -428,9 +437,18 @@ $("share-url").addEventListener("click", async (event) => {
 async function start() {
   renderEnergyPicker();
   try {
-    const response = await fetch(CARD_DATABASE_URL);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    database = new CardDatabase(await response.json());
+    const fetchJson = async (url) => {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+      return response.json();
+    };
+    const [records, species, names] = await Promise.all([
+      fetchJson(CARD_DATABASE_URL),
+      fetchJson("data/species-ja.json"),
+      fetchJson("data/names-ja.json"),
+    ]);
+    const japanese = new JapaneseNames({ species, names });
+    database = new CardDatabase(records, { localize: (record) => japanese.name(record) });
     $("db-status").textContent = `カードDB: ${database.records.length}枚分を読み込みました`;
   } catch (error) {
     $("db-status").textContent = `カードDBを読み込めませんでした（${error.message}）。時間をおいて再読み込みしてください`;
