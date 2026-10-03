@@ -17,6 +17,8 @@ import { JapaneseNames } from "./ja-names.js";
 const $ = (id) => document.getElementById(id);
 const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 
+const NAME_NOTE = "カード名の日本語表記は非公式のもので、一部推測を含みます。正確な名前はゲーム内でご確認ください。";
+
 let database = null;
 let selectedEnergy = [];
 let currentDeck = null;
@@ -270,6 +272,7 @@ function deckHtml(deck) {
     `  <p><strong>トレーナーズ（${countOf(deck.trainers)}枚）</strong></p>`,
     `  <ul>\n${items(deck.trainers)}\n  </ul>`,
     `  <p><a href="${escapeHtml(deckUrl(deck))}">デッキのQRコードを表示</a></p>`,
+    `  <p><small>${NAME_NOTE}</small></p>`,
     `</div>`,
     "",
   ].join("\n");
@@ -278,11 +281,11 @@ function deckHtml(deck) {
 // ---------------------------------------------------------------------------
 // 表示
 
-// 日本語名があれば日本語名 + 小さく英語名
+// 日本語名があれば日本語名 + 小さく英語名。推測の日本語名には印を付ける
 function nameCell(card) {
-  return card.ja
-    ? `${escapeHtml(card.ja)} <span class="en">${escapeHtml(card.name)}</span>`
-    : escapeHtml(card.name);
+  if (!card.ja) return escapeHtml(card.name);
+  const guessed = card.jaGuessed ? ' <span class="guess" title="日本語名は推測です">推測</span>' : "";
+  return `${escapeHtml(card.ja)}${guessed} <span class="en">${escapeHtml(card.name)}</span>`;
 }
 
 function cardTable(title, cards) {
@@ -448,7 +451,10 @@ async function start() {
       fetchJson("data/names-ja.json"),
     ]);
     const japanese = new JapaneseNames({ species, names });
-    database = new CardDatabase(records, { localize: (record) => japanese.name(record) });
+    database = new CardDatabase(records, {
+      localize: (record) => japanese.name(record),
+      isGuessed: (record) => japanese.isGuessed(record),
+    });
     $("db-status").textContent = `カードDB: ${database.records.length}枚分を読み込みました`;
   } catch (error) {
     $("db-status").textContent = `カードDBを読み込めませんでした（${error.message}）。時間をおいて再読み込みしてください`;

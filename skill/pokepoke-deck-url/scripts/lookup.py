@@ -57,10 +57,17 @@ class JapaneseNames:
         self.species = {name_key(k): v for k, v in load_data("species-ja.json").items()}
         self.pokemon = {name_key(k): v for k, v in names["pokemon"].items()}
         self.trainers = {name_key(k): v for k, v in names["trainers"].items()}
+        # 公式名を確認できていない推測
+        self.guessed = {name_key(k): v for k, v in names.get("trainersGuessed", {}).items()}
+
+    def is_guessed(self, card_type, name):
+        key = name_key(name)
+        return card_type == "trainer" and key not in self.trainers and key in self.guessed
 
     def name(self, card_type, name):
         if card_type == "trainer":
-            return self.trainers.get(name_key(name))
+            key = name_key(name)
+            return self.trainers.get(key) or self.guessed.get(key)
         rest, suffix = name_key(name), ""
         if rest.endswith(" ex"):
             rest, suffix = rest[:-3], "ex"
@@ -98,12 +105,17 @@ def load_cards():
             "rank": {"10": 0, "90": 1}.get(m.group(2), 2),
             "code": f"{r['set']}-{r['number']}",
             "ja": japanese.name(card_type, r["name"]),
+            "guessed": japanese.is_guessed(card_type, r["name"]),
         })
     return cards
 
 
 def label(card):
-    return f"{card['ja']}（{card['name']}）" if card["ja"] else f"{card['name']}（日本語名未登録）"
+    if not card["ja"]:
+        return f"{card['name']}（日本語名未登録）"
+    if card["guessed"]:
+        return f"{card['ja']}（{card['name']}・日本語名は推測）"
+    return f"{card['ja']}（{card['name']}）"
 
 
 def representative(cards, card):

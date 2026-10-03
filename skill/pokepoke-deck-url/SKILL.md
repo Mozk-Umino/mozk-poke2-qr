@@ -53,18 +53,20 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 
 番号を記憶だけで書くと間違えやすい。次の順で確認する。
 
-1. **コード実行が使えるなら** `scripts/lookup.py` を使う（日本語名・英語名・セット番号で検索、`--check` でデッキ全体を検証）
+1. **コード実行が使えるなら** `lookup.py` を使う（日本語名・英語名・セット番号で検索、`--check` でデッキ全体を検証）。
+   まず最新版をリポジトリから取って使い、取れなければ同梱の `scripts/lookup.py` を使う
    ```
-   python3 scripts/lookup.py ピカチュウ 博士の研究 "Giant Cape"
-   python3 scripts/lookup.py --check "B1a-24x2.A1-98x2...."
+   curl -fsSL https://raw.githubusercontent.com/Mozk-Umino/mozk-poke2-qr/main/skill/pokepoke-deck-url/scripts/lookup.py -o /tmp/lookup.py || cp scripts/lookup.py /tmp/lookup.py
+   python3 /tmp/lookup.py ピカチュウ 博士の研究 "Giant Cape"
+   python3 /tmp/lookup.py --check "B1a-24x2.A1-98x2...."
    ```
-   日本語名はページと同じ変換ルールで出る。「日本語名未登録」と出たカードはページでも英語名で表示される
+   日本語名はページと同じ変換ルールで出る。「日本語名未登録」はページでも英語名、「日本語名は推測」はページで「推測」と表示される
 2. **Web取得だけ使えるなら** セットごとのJSONを見る（`set`・`number`・`name`(英語) が並んでいる）
    `https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards/<セットコード>.min.json`
    トレーナーズの日本語名は `https://raw.githubusercontent.com/Mozk-Umino/mozk-poke2-qr/main/data/names-ja.json`
 3. **どちらも使えないなら** 記憶で書き、出力に「番号は未確認。ページのカード名が想定と違えば教えてください」と添える
 
-カードDBの元データは英語名。ユーザーへの出力は日本語名で書き、日本語名が未登録・不確かなカードは英語名も併記する。
+カードDBの元データは英語名。ユーザーへの出力は日本語名で書き、日本語名が未登録・推測・不確かなカードは英語名も併記する（例: `ゲームコーナー（Arcade）`）。
 DBに見つからない新カードは、DBの更新待ちの可能性があるとユーザーに伝える。
 
 ## 出力の型

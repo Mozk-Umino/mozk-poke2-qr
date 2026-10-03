@@ -2,6 +2,7 @@
 // ポケモンは種族名の対応表（PokeAPI 由来の data/species-ja.json）と下のルールで変換するので、
 // 新弾で新しいポケモンが増えても基本的に手を入れなくてよい。
 // トレーナーズと、ルールで変換できないポケモンは data/names-ja.json に書く。
+// trainersGuessed は公式名を確認できていない推測。
 
 const PREFIXES = [
   [/^team rocket's\s*/, "ロケット団の"],
@@ -30,10 +31,12 @@ export class JapaneseNames {
     this.species = keyedTable(species);
     this.pokemonTable = keyedTable(names.pokemon);
     this.trainerTable = keyedTable(names.trainers);
+    this.guessedTable = keyedTable(names.trainersGuessed);
   }
 
   trainerName(name) {
-    return this.trainerTable.get(nameKey(name)) ?? null;
+    const key = nameKey(name);
+    return this.trainerTable.get(key) ?? this.guessedTable.get(key) ?? null;
   }
 
   pokemonName(name) {
@@ -64,6 +67,11 @@ export class JapaneseNames {
     }
     const base = this.pokemonTable.get(rest) ?? this.species.get(rest);
     return base ? prefix + base + suffix : null;
+  }
+
+  isGuessed(record) {
+    const key = nameKey(record.name);
+    return record.type === "trainer" && !this.trainerTable.has(key) && this.guessedTable.has(key);
   }
 
   name(record) {

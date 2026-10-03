@@ -34,7 +34,10 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 
 ### Claude のスキル
 `skill/pokepoke-deck-url.zip` を claude.ai の 設定 → Capabilities（機能）→ Skills からアップロードする。
-スキルの中身は `skill/pokepoke-deck-url/`。中身を変えたら `npm run build:skill` でzipを作り直してアップロードし直す。
+スキルの中身は `skill/pokepoke-deck-url/`。
+
+- 日本語名の対応表（`data/`）と `scripts/lookup.py` は、スキルが実行時にこのリポジトリから最新版を取るので、**変えてもアップロードし直さなくてよい**
+- `SKILL.md`（URLの形式・デッキのルール・出力の型など）を変えたときだけ、`npm run build:skill` でzipを作り直してアップロードし直す
 
 ## 日本語名
 
@@ -42,10 +45,11 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 
 - **ポケモン**: `data/species-ja.json`（[PokeAPI](https://github.com/PokeAPI/pokeapi) のポケモン名）と、`ja-names.js` のルール（ex・メガ・アローラ等・ロケット団の）で自動変換。新弾で新しいポケモンが出ても基本的に手入れ不要。ルールで変換できないもの（フォルム違いなど）だけ `data/names-ja.json` の `pokemon` に書く
 - **トレーナーズ**: `data/names-ja.json` の `trainers` に1枚ずつ書く。新弾のたびに追加が必要
+- **推測**: 公式名を確認できていないトレーナーズは `trainersGuessed` に入れてある。ページでは「推測」と表示し、フッターとHTMLコピーに注意書きを出す。ゲーム内の名前を確かめたら `trainers` に移す
 - 未登録のカードは英語名で表示される（壊れはしない）
 
 ### 自動チェック
-`.github/workflows/check-names.yml` が毎週月曜に未登録カードを調べ、あれば Issue「日本語名が未登録のカードがあります」を作る（または更新する）。全部登録されると Issue は自動で閉じる。Actions タブから手動実行もできる。
+`.github/workflows/check-names.yml` が毎週月曜に未登録・推測のカードを調べ、あれば Issue「日本語名の未登録・推測カード」を作る（または更新する）。どちらもなくなると Issue は自動で閉じる。Actions タブから手動実行もできる。
 
 追加するときは `data/names-ja.json` に `"英語名": "日本語名"` を足す。Claude に「mozk-poke2-qr の未登録カードを日本語化して」と頼んでもよい。
 

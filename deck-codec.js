@@ -174,10 +174,13 @@ export function cardCode(card) {
 }
 
 export class CardDatabase {
-  // localize(record) は日本語名（なければ null）を返す関数
-  constructor(rawRecords, { localize } = {}) {
+  // localize(record) は日本語名（なければ null）を、isGuessed(record) は日本語名が推測かどうかを返す関数
+  constructor(rawRecords, { localize, isGuessed } = {}) {
     this.records = rawRecords.map(parseRecord).filter(Boolean);
-    for (const record of this.records) record.ja = localize?.(record) ?? null;
+    for (const record of this.records) {
+      record.ja = localize?.(record) ?? null;
+      record.jaGuessed = Boolean(record.ja && isGuessed?.(record));
+    }
     this.byId = new Map();
     this.byCode = new Map();
     for (const record of this.records) {

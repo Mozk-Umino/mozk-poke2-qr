@@ -1,7 +1,7 @@
 name: 日本語名チェック
 
-# 週1回、カードDBに日本語名が未登録のカードがないか調べて Issue にする。
-# 未登録がなくなったら Issue を閉じる。
+# 週1回、日本語名が未登録・推測のカードがないか調べて Issue にする。
+# どちらもなくなったら Issue を閉じる。
 on:
   schedule:
     - cron: "17 0 * * 1" # 毎週月曜 9:17（日本時間）
@@ -26,7 +26,7 @@ jobs:
           node-version: 22
       - name: テスト
         run: npm test
-      - name: 未登録のカードを調べる
+      - name: 未登録・推測のカードを調べる
         id: check
         run: |
           node scripts/check-names.mjs --out missing.md | tee result.txt
@@ -36,7 +36,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           MISSING: ${{ steps.check.outputs.missing }}
         run: |
-          title="日本語名が未登録のカードがあります"
+          title="日本語名の未登録・推測カード"
           number=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number // empty')
           if [ "$MISSING" -gt 0 ]; then
             if [ -n "$number" ]; then
@@ -45,5 +45,5 @@ jobs:
               gh issue create --title "$title" --body-file missing.md
             fi
           elif [ -n "$number" ]; then
-            gh issue close "$number" --comment "すべてのカードに日本語名が登録されました。"
+            gh issue close "$number" --comment "すべてのカードに確認済みの日本語名が登録されました。"
           fi
