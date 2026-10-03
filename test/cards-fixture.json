@@ -1,0 +1,792 @@
+[
+{
+"set": "A1",
+"number": 96,
+"rarity": "RR",
+"name": "Pikachu ex",
+"image": "cPK_10_000960_00_PIKACHUex_RR.webp",
+"packs": [
+"Pikachu"
+]
+},
+{
+"set": "A1",
+"number": 97,
+"rarity": "C",
+"name": "Magnemite",
+"image": "cPK_10_000970_00_COIL_C.webp",
+"packs": [
+"Pikachu"
+]
+},
+{
+"set": "A1",
+"number": 98,
+"rarity": "R",
+"name": "Magneton",
+"image": "cPK_10_000980_00_RARECOIL_R.webp",
+"packs": [
+"Pikachu"
+]
+},
+{
+"set": "A1",
+"number": 225,
+"rarity": "U",
+"name": "Sabrina",
+"image": "cTR_10_000170_00_NATSUME_U.webp",
+"packs": [
+"Charizard"
+]
+},
+{
+"set": "A1",
+"number": 259,
+"rarity": "SR",
+"name": "Pikachu ex",
+"image": "cPK_20_000960_00_PIKACHUex_SR.webp",
+"packs": [
+"Pikachu"
+]
+},
+{
+"set": "A1",
+"number": 272,
+"rarity": "SR",
+"name": "Sabrina",
+"image": "cTR_20_000170_00_NATSUME_SR.webp",
+"packs": [
+"Charizard"
+]
+},
+{
+"set": "A1",
+"number": 281,
+"rarity": "IM",
+"name": "Pikachu ex",
+"image": "cPK_20_000960_01_PIKACHUex_IM.webp",
+"packs": [
+"Pikachu"
+]
+},
+{
+"set": "A1",
+"number": 285,
+"rarity": "UR",
+"name": "Pikachu ex",
+"image": "cPK_20_000960_02_PIKACHUex_UR.webp",
+"packs": [
+"Charizard",
+"Mewtwo",
+"Pikachu"
+]
+},
+{
+"set": "A2",
+"number": 51,
+"rarity": "C",
+"name": "Magnemite",
+"image": "cPK_10_003320_00_COIL_C.webp",
+"packs": [
+"Dialga",
+"Palkia"
+]
+},
+{
+"set": "A2",
+"number": 52,
+"rarity": "U",
+"name": "Magneton",
+"image": "cPK_10_003330_00_RARECOIL_U.webp",
+"packs": [
+"Dialga",
+"Palkia"
+]
+},
+{
+"set": "A2",
+"number": 53,
+"rarity": "R",
+"name": "Magnezone",
+"image": "cPK_10_003340_00_JIBACOIL_R.webp",
+"packs": [
+"Dialga",
+"Palkia"
+]
+},
+{
+"set": "A2",
+"number": 147,
+"rarity": "U",
+"name": "Giant Cape",
+"image": "cTR_10_000290_00_OOKINAMANTO_U.webp",
+"packs": [
+"Dialga"
+]
+},
+{
+"set": "A2",
+"number": 150,
+"rarity": "U",
+"name": "Cyrus",
+"image": "cTR_10_000320_00_AKAGI_U.webp",
+"packs": [
+"Palkia"
+]
+},
+{
+"set": "A2",
+"number": 190,
+"rarity": "SR",
+"name": "Cyrus",
+"image": "cTR_20_000320_00_AKAGI_SR.webp",
+"packs": [
+"Palkia"
+]
+},
+{
+"set": "A2a",
+"number": 53,
+"rarity": "C",
+"name": "Magnemite",
+"image": "cPK_10_004770_00_COIL_C.webp",
+"packs": [
+"Arceus"
+]
+},
+{
+"set": "A2a",
+"number": 54,
+"rarity": "C",
+"name": "Magneton",
+"image": "cPK_10_004780_00_RARECOIL_C.webp",
+"packs": [
+"Arceus"
+]
+},
+{
+"set": "A2a",
+"number": 55,
+"rarity": "R",
+"name": "Magnezone",
+"image": "cPK_10_004790_00_JIBACOIL_R.webp",
+"packs": [
+"Arceus"
+]
+},
+{
+"set": "A2a",
+"number": 80,
+"rarity": "AR",
+"name": "Magnemite",
+"image": "cPK_20_004770_00_COIL_AR.webp",
+"packs": [
+"Arceus"
+]
+},
+{
+"set": "A2b",
+"number": 22,
+"rarity": "RR",
+"name": "Pikachu ex",
+"image": "cPK_10_005410_00_PIKACHUex_RR.webp",
+"packs": [
+"Shining"
+]
+},
+{
+"set": "A2b",
+"number": 82,
+"rarity": "SR",
+"name": "Pikachu ex",
+"image": "cPK_20_005410_00_PIKACHUex_SR.webp",
+"packs": [
+"Shining"
+]
+},
+{
+"set": "A2b",
+"number": 92,
+"rarity": "SAR",
+"name": "Pikachu ex",
+"image": "cPK_20_005410_01_PIKACHUex_SAR.webp",
+"packs": [
+"Shining"
+]
+},
+{
+"set": "A2b",
+"number": 111,
+"rarity": "UR",
+"name": "Poké Ball",
+"image": "cTR_20_000030_00_MONSTERBALL_UR.webp",
+"packs": [
+"Shining"
+]
+},
+{
+"set": "A3a",
+"number": 21,
+"rarity": "R",
+"name": "Zeraora",
+"image": "cPK_10_007410_00_ZERAORA_R.webp",
+"packs": [
+"Extradimensional"
+]
+},
+{
+"set": "A4",
+"number": 217,
+"rarity": "S",
+"name": "Magnemite",
+"image": "cPK_20_000970_00_COIL_S.webp",
+"packs": [
+"Lugia"
+]
+},
+{
+"set": "A4",
+"number": 218,
+"rarity": "S",
+"name": "Magneton",
+"image": "cPK_20_000980_00_RARECOIL_S.webp",
+"packs": [
+"Lugia"
+]
+},
+{
+"set": "A4b",
+"number": 131,
+"rarity": "RR",
+"name": "Pikachu ex",
+"image": "cPK_10_000960_00_PIKACHUex_RR.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 132,
+"rarity": "RR",
+"name": "Pikachu ex",
+"image": "cPK_10_005410_00_PIKACHUex_RR.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 133,
+"rarity": "C",
+"name": "Magnemite",
+"image": "cPK_10_000970_00_COIL_C.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 134,
+"rarity": "C",
+"name": "Magnemite",
+"image": "cPK_10_000970_01_COIL_C.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 135,
+"rarity": "R",
+"name": "Magneton",
+"image": "cPK_10_000980_00_RARECOIL_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 136,
+"rarity": "R",
+"name": "Magneton",
+"image": "cPK_10_000980_01_RARECOIL_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 137,
+"rarity": "R",
+"name": "Magnezone",
+"image": "cPK_10_003340_00_JIBACOIL_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 138,
+"rarity": "R",
+"name": "Magnezone",
+"image": "cPK_10_003340_01_JIBACOIL_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 149,
+"rarity": "R",
+"name": "Zeraora",
+"image": "cPK_10_007410_00_ZERAORA_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 150,
+"rarity": "R",
+"name": "Zeraora",
+"image": "cPK_10_007410_01_ZERAORA_R.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 320,
+"rarity": "U",
+"name": "Giant Cape",
+"image": "cTR_10_000290_00_OOKINAMANTO_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 321,
+"rarity": "U",
+"name": "Giant Cape",
+"image": "cTR_10_000290_01_OOKINAMANTO_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 326,
+"rarity": "U",
+"name": "Cyrus",
+"image": "cTR_10_000320_00_AKAGI_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 327,
+"rarity": "U",
+"name": "Cyrus",
+"image": "cTR_10_000320_01_AKAGI_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 338,
+"rarity": "U",
+"name": "Sabrina",
+"image": "cTR_10_000170_00_NATSUME_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 339,
+"rarity": "U",
+"name": "Sabrina",
+"image": "cTR_10_000170_01_NATSUME_U.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 364,
+"rarity": "SR",
+"name": "Pikachu ex",
+"image": "cPK_20_000960_03_PIKACHUex_SR.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 373,
+"rarity": "SR",
+"name": "Professor’s Research",
+"image": "cTR_20_000040_00_HAKASENOKENKYU_SR.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "A4b",
+"number": 376,
+"rarity": "IM",
+"name": "Pikachu ex",
+"image": "cPK_20_000960_04_PIKACHUex_IM.webp",
+"packs": [
+"Deluxe"
+]
+},
+{
+"set": "PROMO-A",
+"number": 5,
+"rarity": "C",
+"name": "Poké Ball",
+"image": "cTR_90_000030_00_MONSTERBALL_C.webp"
+},
+{
+"set": "PROMO-A",
+"number": 7,
+"rarity": "C",
+"name": "Professor’s Research",
+"image": "cTR_90_000040_00_HAKASENOKENKYU_C.webp"
+},
+{
+"set": "PROMO-A",
+"number": 24,
+"rarity": "R",
+"name": "Magnemite",
+"image": "cPK_90_000970_00_COIL_R.webp"
+},
+{
+"set": "PROMO-A",
+"number": 74,
+"rarity": "AR",
+"name": "Zeraora",
+"image": "cPK_90_007410_00_ZERAORA_AR.webp"
+},
+{
+"set": "B1",
+"number": 225,
+"rarity": "U",
+"name": "Copycat",
+"image": "cTR_10_000990_00_MONOMANEMUSUME_U.webp",
+"packs": [
+"Mega Gyarados"
+]
+},
+{
+"set": "B1",
+"number": 226,
+"rarity": "U",
+"name": "Lisia",
+"image": "cTR_10_001000_00_RUCHIA_U.webp",
+"packs": [
+"Mega Altaria"
+]
+},
+{
+"set": "B1",
+"number": 270,
+"rarity": "SR",
+"name": "Copycat",
+"image": "cTR_20_000990_00_MONOMANEMUSUME_SR.webp",
+"packs": [
+"Mega Gyarados"
+]
+},
+{
+"set": "B1",
+"number": 271,
+"rarity": "SR",
+"name": "Lisia",
+"image": "cTR_20_001000_00_RUCHIA_SR.webp",
+"packs": [
+"Mega Altaria"
+]
+},
+{
+"set": "B1",
+"number": 304,
+"rarity": "S",
+"name": "Zeraora",
+"image": "cPK_20_007410_00_ZERAORA_S.webp",
+"packs": [
+"Mega Altaria"
+]
+},
+{
+"set": "B1",
+"number": 321,
+"rarity": "SSR",
+"name": "Pikachu ex",
+"image": "cPK_20_005410_02_PIKACHUex_SSR.webp",
+"packs": [
+"Mega Gyarados"
+]
+},
+{
+"set": "B1a",
+"number": 24,
+"rarity": "C",
+"image": "cPK_10_013290_00_COIL_C.webp",
+"name": "Magnemite",
+"packs": [
+"Crimson Blaze"
+]
+},
+{
+"set": "B1a",
+"number": 25,
+"rarity": "U",
+"image": "cPK_10_013300_00_RARECOIL_U.webp",
+"name": "Magneton",
+"packs": [
+"Crimson Blaze"
+]
+},
+{
+"set": "B1a",
+"number": 26,
+"rarity": "R",
+"image": "cPK_10_013310_00_JIBACOIL_R.webp",
+"name": "Magnezone",
+"packs": [
+"Crimson Blaze"
+]
+},
+{
+"set": "B1a",
+"number": 68,
+"rarity": "U",
+"image": "cTR_10_001030_00_CITRON_U.webp",
+"name": "Clemont",
+"packs": [
+"Crimson Blaze"
+]
+},
+{
+"set": "B1a",
+"number": 81,
+"rarity": "SR",
+"image": "cTR_20_001030_00_CITRON_SR.webp",
+"name": "Clemont",
+"packs": [
+"Crimson Blaze"
+]
+},
+{
+"set": "PROMO-B",
+"number": 103,
+"rarity": "IM",
+"image": "cPK_90_005410_00_PIKACHUex_IM.webp",
+"name": "Pikachu ex"
+},
+{
+"set": "B3",
+"number": 52,
+"rarity": "C",
+"image": "cPK_10_017170_00_COIL_C.webp",
+"name": "Magnemite",
+"packs": [
+"Pulsing Aura"
+]
+},
+{
+"set": "B3",
+"number": 53,
+"rarity": "U",
+"image": "cPK_10_017180_00_RARECOIL_U.webp",
+"name": "Magneton",
+"packs": [
+"Pulsing Aura"
+]
+},
+{
+"set": "B3a",
+"number": 19,
+"rarity": "RR",
+"image": "cPK_10_018340_00_MIRAIDONex_RR.webp",
+"name": "Miraidon ex",
+"packs": [
+"Paradox Drive"
+]
+},
+{
+"set": "B3a",
+"number": 73,
+"rarity": "U",
+"image": "cTR_10_001410_00_FUTUHAKASE_U.webp",
+"name": "Professor Turo",
+"packs": [
+"Paradox Drive"
+]
+},
+{
+"set": "B3a",
+"number": 82,
+"rarity": "SR",
+"image": "cPK_20_018340_00_MIRAIDONex_SR.webp",
+"name": "Miraidon ex",
+"packs": [
+"Paradox Drive"
+]
+},
+{
+"set": "B3a",
+"number": 88,
+"rarity": "SR",
+"image": "cTR_20_001410_00_FUTUHAKASE_SR.webp",
+"name": "Professor Turo",
+"packs": [
+"Paradox Drive"
+]
+},
+{
+"set": "B3a",
+"number": 90,
+"rarity": "SAR",
+"image": "cPK_20_018340_01_MIRAIDONex_SAR.webp",
+"name": "Miraidon ex",
+"packs": [
+"Paradox Drive"
+]
+},
+{
+"set": "B4b",
+"number": 218,
+"rarity": "U",
+"image": "cTR_10_001030_00_CITRON_U.webp",
+"name": "Clemont",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 225,
+"rarity": "U",
+"image": "cTR_10_000990_00_MONOMANEMUSUME_U.webp",
+"name": "Copycat",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 226,
+"rarity": "U",
+"image": "cTR_10_001000_00_RUCHIA_U.webp",
+"name": "Lisia",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 384,
+"rarity": "U",
+"image": "cTR_10_001030_01_CITRON_U.webp",
+"name": "Clemont",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 391,
+"rarity": "U",
+"image": "cTR_10_000990_01_MONOMANEMUSUME_U.webp",
+"name": "Copycat",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 392,
+"rarity": "U",
+"image": "cTR_10_001000_01_RUCHIA_U.webp",
+"name": "Lisia",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 424,
+"rarity": "SR",
+"image": "cTR_20_000990_01_MONOMANEMUSUME_SR.webp",
+"name": "Copycat",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 428,
+"rarity": "UR",
+"image": "cPK_20_018340_02_MIRAIDONex_UR.webp",
+"name": "Miraidon ex",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 84,
+"rarity": "C",
+"image": "cPK_10_013290_00_COIL_C.webp",
+"name": "Magnemite",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 85,
+"rarity": "U",
+"image": "cPK_10_013300_00_RARECOIL_U.webp",
+"name": "Magneton",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 103,
+"rarity": "RR",
+"image": "cPK_10_018340_00_MIRAIDONex_RR.webp",
+"name": "Miraidon ex",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 293,
+"rarity": "C",
+"image": "cPK_10_013290_01_COIL_C.webp",
+"name": "Magnemite",
+"packs": [
+"Deluxe Pack Mega"
+]
+},
+{
+"set": "B4b",
+"number": 294,
+"rarity": "U",
+"image": "cPK_10_013300_01_RARECOIL_U.webp",
+"name": "Magneton",
+"packs": [
+"Deluxe Pack Mega"
+]
+}
+]

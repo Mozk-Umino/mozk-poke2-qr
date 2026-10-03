@@ -1,0 +1,9 @@
+{
+  "name": "mozk-poke2-qr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build:skill": "cd skill && rm -f pokepoke-deck-url.zip && zip -rqX pokepoke-deck-url.zip pokepoke-deck-url"
+  }
+}

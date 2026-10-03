@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ポケポケ デッキQR</title>
+  <meta name="description" content="ポケポケのデッキをURLで共有し、ゲームで読み込めるQRコードにするツール">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>ポケポケ デッキQR</h1>
+    <p class="lead">デッキURLを開くと、ゲームの「コードを読み取る」で読み込めるQRコードが出ます。</p>
+  </header>
+
+  <p id="db-status" class="status">カードDBを読み込み中…</p>
+
+  <!-- デッキ表示 -->
+  <section id="deck-section" class="hidden">
+    <h2 id="deck-name"></h2>
+    <div class="summary" id="deck-summary"></div>
+    <div id="deck-errors" class="errors hidden"></div>
+
+    <div id="qr-area" class="hidden">
+      <div class="qr-box" id="qr"></div>
+      <div class="actions">
+        <button id="save-qr" class="primary">QR画像を保存</button>
+        <button id="share-url">URLを共有</button>
+      </div>
+      <details class="howto">
+        <summary>ゲームでの読み込み方</summary>
+        <ol>
+          <li>ゲームで「マイデッキ」→「新規作成」→「コードを読み取る」</li>
+          <li><b>スマホだけのとき</b>: 「QR画像を保存」した画像を、画像から読み取る</li>
+          <li><b>PCがあるとき</b>: PCにこのページを出して、スマホのカメラで読む</li>
+        </ol>
+      </details>
+    </div>
+
+    <div id="deck-list"></div>
+
+    <div id="publish-area" class="hidden">
+      <h3>ブログ・SNS用</h3>
+      <div class="actions">
+        <button id="save-card">まとめ画像を保存</button>
+        <button id="copy-markdown">Markdownをコピー</button>
+        <button id="copy-html">HTMLをコピー</button>
+        <button id="copy-url">URLをコピー</button>
+      </div>
+      <img id="card-preview" class="card-preview" alt="デッキのまとめ画像">
+      <p class="note">画像は長押し（PCは右クリック）でも保存できます。</p>
+    </div>
+  </section>
+
+  <!-- 編集 -->
+  <section>
+    <details id="editor" open>
+      <summary>デッキを作る・直す</summary>
+
+      <label class="field">デッキ名
+        <input type="text" id="edit-name" placeholder="例: ミライドンex">
+      </label>
+
+      <div class="field">エネルギー（1〜3種類）
+        <div class="energy-picker" id="edit-energy"></div>
+      </div>
+
+      <label class="field">カード（1行に1枚。2枚なら末尾に x2）
+        <textarea id="edit-cards" rows="10" spellcheck="false" placeholder="B1a-24x2&#10;A1-98x2&#10;PROMO-A-7x2"></textarea>
+      </label>
+
+      <div class="field">カードを探す
+        <input type="text" id="search" placeholder="英語名で検索（例: Pikachu）" autocomplete="off">
+        <div class="search-results" id="search-results"></div>
+      </div>
+
+      <label class="field">デッキURL・QRの中身から読み込む
+        <input type="text" id="import" placeholder="URL か Base64 の文字列を貼る" autocomplete="off">
+      </label>
+      <div class="actions"><button id="import-button">読み込む</button></div>
+      <div id="import-errors" class="errors hidden"></div>
+    </details>
+  </section>
+
+  <footer>
+    非公式のファンツールです。任天堂・クリーチャーズ・ゲームフリーク・株式会社ポケモンとは関係ありません。
+    コード形式は <a href="https://github.com/KevinGutowski/tcgp-deck-qr" target="_blank" rel="noopener">tcgp-deck-qr</a>、
+    カードDBは <a href="https://github.com/flibustier/pokemon-tcg-pocket-database" target="_blank" rel="noopener">pokemon-tcg-pocket-database</a> を利用しています。
+  </footer>
+</main>
+
+<script src="vendor/qrcode.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
