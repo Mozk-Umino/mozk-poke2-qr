@@ -37,7 +37,10 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 スキルの中身は `skill/pokepoke-deck-url/`。
 
 - 日本語名の対応表（`data/`）と `scripts/lookup.py` は、スキルが実行時にこのリポジトリから最新版を取るので、**変えてもアップロードし直さなくてよい**
-- `SKILL.md`（URLの形式・デッキのルール・出力の型など）を変えたときだけ、`npm run build:skill` でzipを作り直してアップロードし直す
+- `SKILL.md`（URLの形式・デッキのルール・出力の型など）を変えたときだけ、次の2つをやる
+  1. `npm run build:skill` でzipを作り直し、claude.ai にアップロードし直す
+  2. `npm run sync:skill` で MozkSkills（`~/.claude/skills/pokepoke-deck-url`）のコピーを更新し、MozkSkills 側で commit / push する
+- 本体はこのリポジトリの `skill/`。MozkSkills と claude.ai にあるのはコピーなので、直すのは必ずこちら
 
 ## 日本語名
 
