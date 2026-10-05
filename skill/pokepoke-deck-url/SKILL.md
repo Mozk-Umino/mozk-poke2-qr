@@ -3,7 +3,7 @@ name: pokepoke-deck-url
 description: ポケポケ（Pokémon TCG Pocket）のデッキをユーザーと相談して組み、ゲームで読み込めるQRコードを表示する「デッキURL」を出力する。ユーザーがポケポケのデッキ相談・デッキ構築・デッキ改造・デッキのQRコード・デッキURLについて話したとき、またはポケポケのデッキレシピを示すときは必ず使う。紙のポケモンカードゲームの相談には使わない。
 ---
 
-<!-- 本体は https://github.com/Mozk-Umino/mozk-poke2-qr の skill/pokepoke-deck-url/。ほかの場所にあるのはコピーなので直接直さない -->
+<!-- 配布元: https://github.com/Mozk-Umino/mozk-poke2-qr （最新版はここから入手できる。作者が直すときは、このリポジトリの skill/pokepoke-deck-url/ を直す）。非公式のファンツール -->
 
 # ポケポケ デッキURL
 

@@ -66,7 +66,16 @@
       <textarea id="prompt-text" class="hidden" rows="12" readonly></textarea>
       <p class="note">AIはカードの番号を間違えることがあります。ページを開くとカード名とエラーが出るので、違っていたらAIに伝えて直してもらってください。</p>
 
-      <h3>③ デッキURLの書き方</h3>
+      <h3>③ Claude を使っている人は</h3>
+      <p>スキルを入れておくと、プロンプトを貼らなくても、相談の最後に Claude がデッキURLを出してくれます。</p>
+      <ol class="guide-steps">
+        <li><a href="skill/pokepoke-deck-url.zip" download>スキル（pokepoke-deck-url.zip）</a>をダウンロード</li>
+        <li>claude.ai の「設定」→「機能」→「スキル」から zip をアップロード</li>
+        <li>「ポケポケのデッキを相談したい」と話しかける</li>
+      </ol>
+      <p class="note">「設定」→「機能」でコード実行を有効にしておくと、カード番号を照合してからURLを出します。</p>
+
+      <h3>④ デッキURLの書き方</h3>
       <pre class="url-format">https://mozk-umino.github.io/mozk-poke2-qr/?n=<b>デッキ名</b>&amp;e=<b>エネルギー</b>&amp;d=<b>カード</b></pre>
       <table class="guide-table"><tbody>
         <tr><th>n</th><td>デッキ名（省略可）</td></tr>
