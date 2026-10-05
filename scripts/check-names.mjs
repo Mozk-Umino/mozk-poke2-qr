@@ -54,11 +54,7 @@ if (missing.length > 0) {
   for (const card of missing) lines.push(`| ${typeLabel(card)} | ${card.name} | ${card.codes.slice(0, 3).join(", ")} |`);
   lines.push("");
 }
-if (guessed.length > 0) {
-  lines.push(`## 推測（${guessed.length}）`, "", "| 英語名 | 推測した日本語名 | 収録番号の例 |", "|---|---|---|");
-  for (const card of guessed) lines.push(`| ${card.name} | ${card.ja} | ${card.codes.slice(0, 3).join(", ")} |`);
-  lines.push("");
-}
+// 推測の一覧は、読みと並べて scripts/check-readings.py が出す
 const markdown = lines.join("\n");
 
 const outIndex = process.argv.indexOf("--out");

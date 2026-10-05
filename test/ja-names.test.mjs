@@ -59,7 +59,7 @@ test("スキルの lookup.py も同じ日本語名を返す", () => {
 });
 
 test("推測の日本語名は区別できる", () => {
-  assert.equal(japanese.name({ type: "trainer", name: "Arcade" }), "ゲームコーナー");
+  assert.equal(japanese.name({ type: "trainer", name: "Arcade" }), "ゲームセンター");
   assert.equal(japanese.isGuessed({ type: "trainer", name: "Arcade" }), true);
   assert.equal(japanese.isGuessed({ type: "trainer", name: "Sabrina" }), false);
   assert.equal(japanese.isGuessed({ type: "pokemon", name: "Pikachu" }), false);

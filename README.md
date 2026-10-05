@@ -62,7 +62,17 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
 - 未登録のカードは英語名で表示される（壊れはしない）
 
 ### 自動チェック
-`.github/workflows/check-names.yml` が毎週月曜に未登録・推測のカードを調べ、あれば Issue「日本語名の未登録・推測カード」を作る（または更新する）。どちらもなくなると Issue は自動で閉じる。Actions タブから手動実行もできる。
+`.github/workflows/check-names.yml` が毎週月曜に次を調べ、あれば Issue「日本語名の未登録・推測カード」を作る（または更新する）。すべてなくなると Issue は自動で閉じる。Actions タブから手動実行もできる。
+
+- 未登録のカード（`scripts/check-names.mjs`）
+- 推測のカードと、その読み（`scripts/check-readings.py`）
+- 確認済みなのに読みが食い違うカード（同上）
+
+**読みの照合**: カードDBの画像ファイル名（例: `cTR_90_000040_00_HAKASENOKENKYU_C.webp`）には公式の日本語名の読みがローマ字で入っている。登録した日本語名をローマ字にして比べる。分かるのは読みだけで、表記（漢字・かな）は確かめられない。カタカナ名は英語つづり（`GAMECENTER` など）で入っていることも多いので、正しいと確認したものは `readingCheckSkip` に入れて報告から外す。
+
+### 正確な表記の確認（新弾のたび）
+クラウド環境からはカード一覧サイトに接続できないので、ローカルの Claude Code で行う。
+「mozk-poke2-qr の docs/verify-names.md に従って日本語名を確かめて」と頼めば、手順どおり一覧サイトで確認し、`data/names-ja.json` を直す。
 
 追加するときは `data/names-ja.json` に `"英語名": "日本語名"` を足す。Claude に「mozk-poke2-qr の未登録カードを日本語化して」と頼んでもよい。
 
@@ -92,6 +102,8 @@ u8  エネルギー種類 （1草 2炎 3水 4雷 5超 6闘 7悪 8鋼）
 | `deck-codec.js` | QRの中身・デッキURLの読み書きとデッキのチェック（DOM非依存） |
 | `ja-names.js` / `data/` | 日本語名の変換 |
 | `scripts/check-names.mjs` | 日本語名が未登録のカードの一覧を出す |
+| `scripts/check-readings.py` | 日本語名とカード画像のファイル名の読みを照合する |
+| `docs/verify-names.md` | 日本語名をカード一覧サイトで確かめる手順（ローカルの Claude Code 用） |
 | `vendor/qrcode.js` | [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)（MIT） |
 | `skill/` | Claude 用スキル |
 | `ai-prompt.txt` | ほかの人がAIに貼る用のプロンプト |
