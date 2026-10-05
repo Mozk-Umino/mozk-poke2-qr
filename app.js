@@ -463,8 +463,11 @@ $("show-prompt").addEventListener("click", async () => {
 
 async function start() {
   renderEnergyPicker();
-  // デッキURLから開いたときは使い方を畳んで、QRを主役にする
-  if (/[?&](d|c)=/.test(location.search)) $("guide").open = false;
+  // デッキURLから開いたときは注意事項と使い方を畳んで、QRを主役にする
+  if (/[?&](d|c)=/.test(location.search)) {
+    $("guide").open = false;
+    $("caution").open = false;
+  }
   try {
     const fetchJson = async (url) => {
       const response = await fetch(url);
