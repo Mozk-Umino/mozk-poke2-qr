@@ -10,6 +10,18 @@
 
 export const CARD_DATABASE_URL =
   "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.min.json";
+export const SETS_URL =
+  "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/sets.json";
+
+// sets.json（シリーズごとのセット一覧）から、カードDBに収録がある中で一番新しいセットを返す
+export function latestSet(sets, records) {
+  const inDb = new Set(records.map((record) => String(record.set)));
+  return Object.values(sets)
+    .flat()
+    .filter((set) => inDb.has(set.code) && !/^PROMO/i.test(set.code) && set.releaseDate)
+    .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
+    .at(-1) ?? null;
+}
 
 const TRAINER_ID_OFFSET = 10_000_000;
 const MAX_U24 = 0xff_ff_ff;

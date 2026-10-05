@@ -1,6 +1,8 @@
 import {
   buildDeck,
   CARD_DATABASE_URL,
+  latestSet,
+  SETS_URL,
   CardDatabase,
   cardCode,
   deckFromPayload,
@@ -480,6 +482,25 @@ $("show-prompt").addEventListener("click", async () => {
   $("prompt-text").classList.toggle("hidden");
 });
 
+// 対応している最新の弾と、ページの最終更新日を出す（取れなければ出さない）
+async function showVersionInfo(records) {
+  const parts = [];
+  try {
+    const response = await fetch(SETS_URL);
+    const set = response.ok ? latestSet(await response.json(), records) : null;
+    if (set) {
+      const name = set.name?.ja || set.name?.en || "";
+      parts.push(`最新の弾: ${set.code}${name ? ` ${name}` : ""}（${set.releaseDate} 発売）まで対応`);
+    }
+  } catch { /* 弾の情報は無くても動く */ }
+  const modified = new Date(document.lastModified);
+  if (!Number.isNaN(modified.getTime())) {
+    const pad = (n) => String(n).padStart(2, "0");
+    parts.push(`ページ更新: ${modified.getFullYear()}-${pad(modified.getMonth() + 1)}-${pad(modified.getDate())}`);
+  }
+  if (parts.length) $("version-info").textContent = parts.join("　");
+}
+
 async function start() {
   renderEnergyPicker();
   $("qr-credit").textContent = CREDIT;
@@ -505,6 +526,7 @@ async function start() {
       isGuessed: (record) => japanese.isGuessed(record),
     });
     $("db-status").textContent = `カードDB: ${database.records.length}枚分を読み込みました`;
+    showVersionInfo(records);
   } catch (error) {
     $("db-status").textContent = `カードDBを読み込めませんでした（${error.message}）。時間をおいて再読み込みしてください`;
     return;

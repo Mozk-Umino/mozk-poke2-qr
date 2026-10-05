@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ポケポケ デッキQR</title>
   <meta name="description" content="ポケポケのデッキをURLで共有し、ゲームで読み込めるQRコードにするツール">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="ポケポケ デッキQR">
+  <meta property="og:title" content="ポケポケ デッキQR">
+  <meta property="og:description" content="ポケポケのデッキを作って、ゲームの「コードを読み取る」で読み込めるコードを表示する非公式ファンツール。デッキをURLで共有できます。">
+  <meta property="og:url" content="https://mozk-umino.github.io/mozk-poke2-qr/">
+  <meta property="og:image" content="https://mozk-umino.github.io/mozk-poke2-qr/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,6 +27,7 @@
   </header>
 
   <p id="db-status" class="status">カードDBを読み込み中…</p>
+  <p id="version-info" class="status"></p>
 
   <!-- 注意事項 -->
   <section class="caution">
@@ -26,6 +39,7 @@
       <li><b>新弾のカードは、少し遅れて使えるようになります。</b>有志のカードDBに追加されるまでは「見つかりません」と出ます</li>
       <li><b>カード名の日本語は非公式です。</b>一部は推測で、「推測」と表示しています。正確な名前はゲーム内でご確認ください</li>
       <li><b>非公式のツールです。</b>ゲームのアップデートで、作ったコードが読み込めなくなる可能性があります</li>
+      <li><b>入力したデッキは送信されません。</b>デッキの内容はブラウザの中だけで処理し、どこにも送信・保存しません</li>
     </ul>
     </details>
   </section>
@@ -138,6 +152,8 @@
     カードDBは <a href="https://github.com/flibustier/pokemon-tcg-pocket-database" target="_blank" rel="noopener">pokemon-tcg-pocket-database</a>、
     ポケモン名の日本語は <a href="https://github.com/PokeAPI/pokeapi" target="_blank" rel="noopener">PokéAPI</a> のデータを利用しています
     （<a href="https://github.com/Mozk-Umino/mozk-poke2-qr/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener">ライセンス表記</a>）。
+    <p class="report">不具合やカード名の誤りは <a href="https://x.com/100_99_1e12" target="_blank" rel="noopener">X</a> でお知らせください。
+      個人で運営しているため、すべてにはお返事・対応できないことがあります。</p>
     <p class="trademark">QRコードは株式会社デンソーウェーブの登録商標です。
       ポケモン・Pokémon・ポケットモンスターは任天堂・クリーチャーズ・ゲームフリークの登録商標です。</p>
     <p class="credit">© 2026 もずく・らてっくす

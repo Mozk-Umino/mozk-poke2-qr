@@ -8,6 +8,7 @@ import {
   deckFromPayload,
   deckQuery,
   encodePayload,
+  latestSet,
   parseDeckQuery,
   parseEnergyList,
 } from "../deck-codec.js";
@@ -84,4 +85,13 @@ test("QRの中身から戻すときは通常版の番号で表す", () => {
   assert.match(query, /PROMO-A-7x2/);
   assert.match(query, /PROMO-A-5x2/);
   assert.doesNotMatch(query, /A4b|A2b/);
+});
+
+test("カードDBにある中で一番新しい弾を選ぶ（プロモは除く）", () => {
+  const sets = {
+    A: [{ code: "A1", releaseDate: "2024-10-30" }, { code: "PROMO-A", releaseDate: "2024-10-30" }],
+    B: [{ code: "B1", releaseDate: "2025-10-30" }, { code: "B9", releaseDate: "2030-01-01" }],
+  };
+  const records = [{ set: "A1" }, { set: "B1" }, { set: "PROMO-A" }];
+  assert.equal(latestSet(sets, records).code, "B1");
 });

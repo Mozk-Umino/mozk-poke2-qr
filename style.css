@@ -42,7 +42,8 @@ h1 { font-size: 1.4rem; margin: 0; }
 h2 { font-size: 1.25rem; margin: 0 0 4px; }
 h3 { font-size: 1rem; margin: 24px 0 8px; }
 .lead { color: var(--muted); margin: 4px 0 12px; font-size: .9rem; }
-.status { font-size: .82rem; color: var(--muted); margin: 0 0 12px; }
+.status { font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
+#version-info { margin-bottom: 12px; }
 section {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -118,3 +119,4 @@ code { background: var(--code-bg); border-radius: 4px; padding: 0 4px; font-size
 .qr-credit { text-align: center; font-size: .7rem; color: var(--muted); margin: 4px 0 0; }
 footer .credit { text-align: center; margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--border); }
 footer .trademark { margin: 8px 0 0; }
+footer .report { margin: 8px 0 0; }

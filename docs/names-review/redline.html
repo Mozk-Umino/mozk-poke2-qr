@@ -1,0 +1,307 @@
+<title>ポケポケ デッキQR 日本語名の赤入れ帳</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap">
+<style>
+:root{
+ --paper:#F8F9F7;--ink:#1A1D1A;--ink2:#565B57;--ink3:#8A908B;--rule:#DCE0DA;--panel:#FFF;
+ --you:#B4322A;--rw:#BE7418;--src:#2A756D;--ai:#8A8DA0;--edit:#6B54A8;
+ --you-b:rgba(180,50,42,.13);--rw-b:rgba(190,116,24,.13);--src-b:rgba(42,117,109,.12);
+ --ai-b:rgba(138,141,160,.14);--edit-b:rgba(107,84,168,.13);
+ --flag:#B4322A;--flag-b:rgba(180,50,42,.07);--done:#2A756D;
+ --sans:"Noto Sans JP",-apple-system,"Hiragino Sans",sans-serif;--serif:"Noto Serif JP",serif;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#15171A;--ink:#E6E8E4;--ink2:#A2A8A3;--ink3:#6E746F;--rule:#2A2E2C;--panel:#1C1F22;
+ --you:#E8776C;--rw:#E0A24E;--src:#5CBFB1;--ai:#A8ABBE;--edit:#A891E0;
+ --you-b:rgba(232,119,108,.17);--rw-b:rgba(224,162,78,.15);--src-b:rgba(92,191,177,.15);
+ --ai-b:rgba(168,171,190,.16);--edit-b:rgba(168,145,224,.16);
+ --flag:#E8776C;--flag-b:rgba(232,119,108,.09);--done:#5CBFB1;}}
+:root[data-theme="dark"]{
+ --paper:#15171A;--ink:#E6E8E4;--ink2:#A2A8A3;--ink3:#6E746F;--rule:#2A2E2C;--panel:#1C1F22;
+ --you:#E8776C;--rw:#E0A24E;--src:#5CBFB1;--ai:#A8ABBE;--edit:#A891E0;
+ --you-b:rgba(232,119,108,.17);--rw-b:rgba(224,162,78,.15);--src-b:rgba(92,191,177,.15);
+ --ai-b:rgba(168,171,190,.16);--edit-b:rgba(168,145,224,.16);
+ --flag:#E8776C;--flag-b:rgba(232,119,108,.09);--done:#5CBFB1;}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.8}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:32px 80px}
+h1{font-family:var(--serif);font-size:clamp(22px,4vw,28px);margin:0 0 6px;font-weight:600}
+h2{font-family:var(--serif);font-size:18px;margin:52px 0 12px;font-weight:600}
+.sub{color:var(--ink2);font-size:14px;margin:0 0 22px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);
+ border-bottom:1px solid var(--rule);margin:0 -20px 22px;padding:11px 20px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.key{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule);background:var(--panel);
+ border-radius:999px;padding:4px 11px 4px 8px;font:inherit;font-size:12px;cursor:pointer;color:var(--ink2)}
+.key[aria-pressed="false"]{opacity:.38}
+.key .sw{width:10px;height:10px;border-radius:2px;flex:none}
+.key .n{color:var(--ink3);font-size:11px;font-variant-numeric:tabular-nums}
+.key:focus-visible,.qa:focus-visible,.send:focus-visible,.tab:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.status{margin-left:auto;font-size:12px;color:var(--ink3)}
+.ratio{display:flex;height:8px;border:1px solid var(--rule);border-radius:2px;overflow:hidden;margin:9px 0 0}
+.ratio span{display:block}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-top:9px}
+.tab{border:1px solid var(--rule);background:var(--panel);color:var(--ink2);font:inherit;
+ font-size:12px;padding:4px 11px;border-radius:3px;cursor:pointer;line-height:1.5}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab .w{color:var(--flag);font-weight:700;margin-left:5px}
+.tab[aria-selected="true"] .w{color:var(--paper)}
+.rows{display:flex;flex-direction:column;gap:6px}
+.row{display:grid;grid-template-columns:1fr 330px;gap:16px;align-items:start}
+@media (max-width:860px){.row{grid-template-columns:1fr}}
+.blk{padding:9px 13px;border-left:3px solid transparent;border-radius:0 2px 2px 0;cursor:pointer;
+ white-space:pre-wrap;word-break:break-word}
+.blk:hover{box-shadow:inset 0 0 0 1px var(--rule)}
+.blk.dim{opacity:.15}
+.blk.head{font-family:var(--serif);font-weight:600;font-size:17px}
+.blk.pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.7;
+ overflow-x:auto;white-space:pre}
+.blk[data-c=you]{background:var(--you-b);border-left-color:var(--you)}
+.blk[data-c=rw]{background:var(--rw-b);border-left-color:var(--rw)}
+.blk[data-c=src]{background:var(--src-b);border-left-color:var(--src)}
+.blk[data-c=ai]{background:var(--ai-b);border-left-color:var(--ai)}
+.blk[data-c=edit]{background:var(--edit-b);border-left-color:var(--edit)}
+.blk.open{box-shadow:inset 0 0 0 1px var(--ink3)}
+.blk.waiting{box-shadow:inset 3px 0 0 var(--flag),inset 0 0 0 1px var(--flag)}
+.bid{float:right;font-size:10px;color:var(--ink3);font-family:ui-monospace,monospace;margin-left:8px}
+.rounds{float:right;font-size:10px;margin-left:8px;color:var(--done);font-variant-numeric:tabular-nums}
+.side{font-size:13px}
+.side.empty{color:var(--ink3);font-size:12px;cursor:pointer}
+.entry{border-left:2px solid var(--rule);padding:2px 0 2px 10px;margin:0 0 9px}
+.entry.mozk{border-left-color:var(--flag)}
+.entry.claude{border-left-color:var(--done)}
+.who{font-size:10.5px;letter-spacing:.06em;font-weight:700;display:block;margin-bottom:2px}
+.entry.mozk .who{color:var(--flag)} .entry.claude .who{color:var(--done)}
+.etext{white-space:pre-wrap;color:var(--ink2);margin:0}
+.chip{display:inline-block;background:var(--flag-b);border:1px solid var(--flag);color:var(--flag);
+ border-radius:3px;padding:1px 7px;font-size:11px;font-weight:700;margin:0 0 4px}
+.pad{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:11px;margin-top:4px}
+.qas{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.qa{border:1px solid var(--rule);background:transparent;color:var(--ink2);border-radius:3px;
+ padding:4px 9px;font:inherit;font-size:12px;cursor:pointer}
+.qa:hover{border-color:var(--ink3)}
+.qa[aria-pressed="true"]{background:var(--flag);border-color:var(--flag);color:var(--paper)}
+textarea{width:100%;min-height:56px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);
+ color:var(--ink);font:inherit;font-size:13px;padding:7px 8px;resize:vertical}
+.act{display:flex;gap:6px;margin-top:7px;align-items:center}
+.send{border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:3px;
+ padding:5px 13px;font:inherit;font-size:12px;cursor:pointer}
+.send.ghost{background:transparent;color:var(--ink3);border-color:var(--rule)}
+.hint{font-size:11px;color:var(--ink3);margin-left:auto;font-family:ui-monospace,monospace}
+.gone{border:1px solid var(--rule);border-radius:3px;padding:13px 15px;margin-bottom:10px;background:var(--panel)}
+.gone h3{margin:0 0 8px;font-size:13px;font-family:ui-monospace,monospace;color:var(--ink3);font-weight:700}
+.foot{margin-top:44px;border-top:1px solid var(--rule);padding-top:18px;font-size:13px;color:var(--ink3)}
+.foot code{background:rgba(128,128,128,.14);padding:1px 4px;border-radius:2px;font-size:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="wrap">
+ <h1>ポケポケ デッキQR 日本語名の赤入れ帳</h1>
+ <p class="sub">ブロックをクリックして赤を入れると、Claude が直して、隣に何をどう考えたかを書きます。やり取りはそのまま下に溜まります。色は文の出どころ。</p>
+ <div class="bar">
+  <div class="legend" id="legend"><span class="status" id="status">接続中…</span></div>
+  <div class="ratio" id="ratio"></div>
+  <div class="tabs" id="tabs" hidden></div>
+ </div>
+ <div class="rows" id="rows"></div>
+ <div id="goneWrap" hidden>
+  <h2>本文から消えたブロックの履歴</h2>
+  <div id="gone"></div>
+ </div>
+ <p class="foot">本文の正は <code>mozk-poke2-qr/data/names-ja.json</code>。色は同ファイルの <code>&lt;!--分類:id--&gt;</code> 行で、<code>redline.py</code> がこの表示データを起こします。赤はブロックIDに紐づくので、本文を書き換えても履歴は残ります。</p>
+</div>
+<script>
+const DATA={"1-guessed": [{"id": "intro", "cat": "ai", "md": "# 推測の日本語名（61）\n\n公式名を確認できていないもの。ページでは「推測」と表示している。正しい名前を赤で入れてもらえれば、確認済みに移す。", "heading": true, "chars": 69}, {"id": "Ancient_Booster_Energy_Capsule", "cat": "ai", "md": "### Ancient Booster Energy Capsule\n\n- 日本語名: **ブーストエナジー 古代**（推測）\n- 読み（カード画像のファイル名）: `BUSUTOENAJIKODAI`\n- 収録: B3a-69, B4b-207, B4b-373", "heading": true, "chars": 115}, {"id": "Arcade", "cat": "ai", "md": "### Arcade\n\n- 日本語名: **ゲームセンター**（推測）\n- 読み（カード画像のファイル名）: `GAMECENTER`\n- 収録: B4a-72", "heading": true, "chars": 69}, {"id": "Arena_of_Antiquity", "cat": "ai", "md": "### Arena of Antiquity\n\n- 日本語名: **いにしえの闘技場**（推測）\n- 読み（カード画像のファイル名）: `INISHIENOTOUGIJYOU`\n- 収録: B3-154, B4b-228, B4b-394", "heading": true, "chars": 104}, {"id": "Beast_Wall", "cat": "ai", "md": "### Beast Wall\n\n- 日本語名: **ビーストウォール**（推測）\n- 読み（カード画像のファイル名）: `BISUTOWORU`\n- 収録: A3a-63", "heading": true, "chars": 73}, {"id": "Beastite", "cat": "ai", "md": "### Beastite\n\n- 日本語名: **ビーストナイト**（推測）\n- 読み（カード画像のファイル名）: `BISUTONAITO`\n- 収録: A3a-66", "heading": true, "chars": 72}, {"id": "Big_Air_Balloon", "cat": "ai", "md": "### Big Air Balloon\n\n- 日本語名: **ビッグエアバルーン**（推測）\n- 読み（カード画像のファイル名）: `BIGAIRBALLOON`\n- 収録: B2a-87", "heading": true, "chars": 81}, {"id": "Bounded_Field", "cat": "ai", "md": "### Bounded Field\n\n- 日本語名: **結界のフィールド**（推測）\n- 読み（カード画像のファイル名）: `KEKKAINOFIELD`\n- 収録: B3-155, B4b-230, B4b-396", "heading": true, "chars": 95}, {"id": "Budding_Expeditioner", "cat": "ai", "md": "### Budding Expeditioner\n\n- 日本語名: **かけだし調査員**（推測）\n- 読み（カード画像のファイル名）: `KAKEDASHICHOSAIN`\n- 収録: A1a-66, A1a-80", "heading": true, "chars": 95}, {"id": "Cabbie", "cat": "ai", "md": "### Cabbie\n\n- 日本語名: **タクシードライバー**（推測）\n- 読み（カード画像のファイル名）: `TAXIDRIVER`\n- 収録: B3-150, B3-191", "heading": true, "chars": 78}, {"id": "Celestic_Town_Elder", "cat": "ai", "md": "### Celestic Town Elder\n\n- 日本語名: **カンナギタウンの長老**（推測）\n- 読み（カード画像のファイル名）: `KANNAGITOWNNOTYOUROU`\n- 収録: A2a-73, A2a-88", "heading": true, "chars": 100}, {"id": "Clear_Veil", "cat": "ai", "md": "### Clear Veil\n\n- 日本語名: **クリアベール**（推測）\n- 読み（カード画像のファイル名）: `KURIAVEIL`\n- 収録: B4-149", "heading": true, "chars": 70}, {"id": "Clemont_s_Backpack", "cat": "ai", "md": "### Clemont's Backpack\n\n- 日本語名: **シトロンのリュック**（推測）\n- 読み（カード画像のファイル名）: `CITRONNORYUKKU`\n- 収録: B1a-66", "heading": true, "chars": 86}, {"id": "Dark_Pendant", "cat": "ai", "md": "### Dark Pendant\n\n- 日本語名: **ダークペンダント**（推測）\n- 読み（カード画像のファイル名）: `DARKPENDANTO`\n- 収録: A4-154", "heading": true, "chars": 77}, {"id": "Deceptive_Needle", "cat": "ai", "md": "### Deceptive Needle\n\n- 日本語名: **インチキばり**（推測）\n- 読み（カード画像のファイル名）: `INCHIKIBARI`\n- 収録: B4-148, B4b-204, B4b-370", "heading": true, "chars": 94}, {"id": "Eevee_Bag", "cat": "ai", "md": "### Eevee Bag\n\n- 日本語名: **イーブイのバッグ**（推測）\n- 読み（カード画像のファイル名）: `IIBUINOBAKKU`\n- 収録: A3b-66, A3b-107, A4b-308, A4b-309", "heading": true, "chars": 98}, {"id": "Electrical_Cord", "cat": "ai", "md": "### Electrical Cord\n\n- 日本語名: **エレキコード**（推測）\n- 読み（カード画像のファイル名）: `EREKIKORD`\n- 収録: A3a-65, A4b-318, A4b-319", "heading": true, "chars": 91}, {"id": "Elegant_Cape", "cat": "ai", "md": "### Elegant Cape\n\n- 日本語名: **優雅なマント**（推測）\n- 読み（カード画像のファイル名）: `YUUGANAMANTO`\n- 収録: B3b-65, B4b-211, B4b-377", "heading": true, "chars": 91}, {"id": "Elemental_Switch", "cat": "ai", "md": "### Elemental Switch\n\n- 日本語名: **エレメンタルつけかえ**（推測）\n- 読み（カード画像のファイル名）: `EREMENTARUTSUKEKAE`\n- 収録: A4-151, A4b-310, A4b-311", "heading": true, "chars": 105}, {"id": "Field_Blower", "cat": "ai", "md": "### Field Blower\n\n- 日本語名: **フィールドブロアー**（推測）\n- 読み（カード画像のファイル名）: `FIELDBLOWER`\n- 収録: B3-147, B4b-202, B4b-368", "heading": true, "chars": 93}, {"id": "Fisher", "cat": "ai", "md": "### Fisher\n\n- 日本語名: **つりびと**（推測）\n- 読み（カード画像のファイル名）: `FISHER`\n- 収録: A4-159, A4-199", "heading": true, "chars": 69}, {"id": "Fishing_Net", "cat": "ai", "md": "### Fishing Net\n\n- 日本語名: **おさかなネット**（推測）\n- 読み（カード画像のファイル名）: `OSAKANANETTO`\n- 収録: A3-143", "heading": true, "chars": 75}, {"id": "Flame_Patch", "cat": "ai", "md": "### Flame Patch\n\n- 日本語名: **フレイムパッチ**（推測）\n- 読み（カード画像のファイル名）: `FUREIMUPACCHI`\n- 収録: B1-217, B1-331, B4b-203, B4b-369", "heading": true, "chars": 99}, {"id": "Fragrant_Forest", "cat": "ai", "md": "### Fragrant Forest\n\n- 日本語名: **甘く香る森**（推測）\n- 読み（カード画像のファイル名）: `AMAKUKAORUMORI`\n- 収録: B3-153, B4b-227, B4b-393", "heading": true, "chars": 95}, {"id": "Future_Booster_Energy_Capsule", "cat": "ai", "md": "### Future Booster Energy Capsule\n\n- 日本語名: **ブーストエナジー 未来**（推測）\n- 読み（カード画像のファイル名）: `BUSUTOENAJIMIRAI`\n- 収録: B3a-70, B4b-208, B4b-374", "heading": true, "chars": 114}, {"id": "Heavy_Helmet", "cat": "ai", "md": "### Heavy Helmet\n\n- 日本語名: **ヘビーヘルメット**（推測）\n- 読み（カード画像のファイル名）: `BABYMET`\n- 収録: B1-219", "heading": true, "chars": 72}, {"id": "Hiking_Trail", "cat": "ai", "md": "### Hiking Trail\n\n- 日本語名: **ハイキングコース**（推測）\n- 読み（カード画像のファイル名）: `HAIKINGUCOURSE`\n- 収録: B2b-69, B4b-234, B4b-400", "heading": true, "chars": 95}, {"id": "Hitting_Hammer", "cat": "ai", "md": "### Hitting Hammer\n\n- 日本語名: **ヒットハンマー**（推測）\n- 読み（カード画像のファイル名）: `HITHAMMER`\n- 収録: B1-215", "heading": true, "chars": 75}, {"id": "Inflatable_Boat", "cat": "ai", "md": "### Inflatable Boat\n\n- 日本語名: **ゴムボート**（推測）\n- 読み（カード画像のファイル名）: `WHOTABOTO`\n- 収録: A4a-67", "heading": true, "chars": 74}, {"id": "Juggler", "cat": "ai", "md": "### Juggler\n\n- 日本語名: **ジャグラー**（推測）\n- 読み（カード画像のファイル名）: `JAGURA`\n- 収録: B2-151, B2-192", "heading": true, "chars": 71}, {"id": "Kid_s_Room", "cat": "ai", "md": "### Kid's Room\n\n- 日本語名: **こどもべや**（推測）\n- 読み（カード画像のファイル名）: `KODOMOBEYA`\n- 収録: B3b-69", "heading": true, "chars": 70}, {"id": "Leaf_Cape", "cat": "ai", "md": "### Leaf Cape\n\n- 日本語名: **リーフマント**（推測）\n- 読み（カード画像のファイル名）: `LEAFMANTO`\n- 収録: A3-147, A4b-324, A4b-325", "heading": true, "chars": 85}, {"id": "Lucky_Ice_Pop", "cat": "ai", "md": "### Lucky Ice Pop\n\n- 日本語名: **あたりつきアイス**（推測）\n- 読み（カード画像のファイル名）: `ATARITSUKIAISU`\n- 収録: B2-145, B4b-198, B4b-364", "heading": true, "chars": 95}, {"id": "Lucky_Mittens", "cat": "ai", "md": "### Lucky Mittens\n\n- 日本語名: **ラッキーミトン**（推測）\n- 読み（カード画像のファイル名）: `LUCKYMITTENS`\n- 収録: B1-220", "heading": true, "chars": 77}, {"id": "Maintenance", "cat": "ai", "md": "### Maintenance\n\n- 日本語名: **メンテナンス**（推測）\n- 読み（カード画像のファイル名）: `MAINTENANCE`\n- 収録: B2b-66", "heading": true, "chars": 74}, {"id": "Memory_Light", "cat": "ai", "md": "### Memory Light\n\n- 日本語名: **メモリーライト**（推測）\n- 読み（カード画像のファイル名）: `MEMORYLIGHT`\n- 収録: A4a-68", "heading": true, "chars": 75}, {"id": "Metal_Core_Barrier", "cat": "ai", "md": "### Metal Core Barrier\n\n- 日本語名: **メタルコアバリア**（推測）\n- 読み（カード画像のファイル名）: `METARUKOABARIA`\n- 収録: B2-148, B2b-117, B4b-210, B4b-376", "heading": true, "chars": 108}, {"id": "Mythical_Slab", "cat": "ai", "md": "### Mythical Slab\n\n- 日本語名: **まぼろしの石板**（推測）\n- 読み（カード画像のファイル名）: `MABOROSHINOSEKIBAN`\n- 収録: A1a-65", "heading": true, "chars": 83}, {"id": "Nasty_Notice", "cat": "ai", "md": "### Nasty Notice\n\n- 日本語名: **いじわるレター**（推測）\n- 読み（カード画像のファイル名）: `IJIWARULETTER`\n- 収録: B2b-65", "heading": true, "chars": 77}, {"id": "Order_Pad", "cat": "ai", "md": "### Order Pad\n\n- 日本語名: **おとりよせパッド**（推測）\n- 読み（カード画像のファイル名）: `OTORIYOSEPADDO`\n- 収録: B4-145, B4b-200, B4b-366", "heading": true, "chars": 92}, {"id": "Peculiar_Plaza", "cat": "ai", "md": "### Peculiar Plaza\n\n- 日本語名: **ふしぎな広場**（推測）\n- 読み（カード画像のファイル名）: `FUSHIGINAHIROBA`\n- 収録: B2-155, B4b-236, B4b-402", "heading": true, "chars": 96}, {"id": "Prank_Spinner", "cat": "ai", "md": "### Prank Spinner\n\n- 日本語名: **いたずらルーレット**（推測）\n- 読み（カード画像のファイル名）: `ITAZURAROULETTE`\n- 収録: B1-213", "heading": true, "chars": 82}, {"id": "Protective_Poncho", "cat": "ai", "md": "### Protective Poncho\n\n- 日本語名: **まもりのポンチョ**（推測）\n- 読み（カード画像のファイル名）: `MAMORINOPONCHO`\n- 収録: B2-147, B2-234, B4b-209, B4b-375", "heading": true, "chars": 107}, {"id": "Psychic", "cat": "ai", "md": "### Psychic\n\n- 日本語名: **サイキッカー**（推測）\n- 読み（カード画像のファイル名）: `SAIKIKKA`\n- 収録: B4-150, B4-190", "heading": true, "chars": 74}, {"id": "Puppy_Loving_Girl", "cat": "ai", "md": "### Puppy-Loving Girl\n\n- 日本語名: **こいぬだいすきガール**（推測）\n- 読み（カード画像のファイル名）: `KOINUDAISUKIGARL`\n- 収録: B3b-67, B3b-84, B4b-216, B4b-382", "heading": true, "chars": 111}, {"id": "Quick_Grow_Extract", "cat": "ai", "md": "### Quick-Grow Extract\n\n- 日本語名: **早熟エキス**（推測）\n- 読み（カード画像のファイル名）: `SOUJYUKUEKISU`\n- 収録: B1a-67, B1a-103, B4b-201, B4b-367", "heading": true, "chars": 105}, {"id": "Rainbow_Cave", "cat": "ai", "md": "### Rainbow Cave\n\n- 日本語名: **にじいろの洞窟**（推測）\n- 読み（カード画像のファイル名）: `NIJIIRONODOUKUTSU`\n- 収録: B4-155, B4b-233, B4b-399", "heading": true, "chars": 97}, {"id": "Repel", "cat": "ai", "md": "### Repel\n\n- 日本語名: **むしよけスプレー**（推測）\n- 読み（カード画像のファイル名）: `MUSHIYOKESUPUREI`\n- 収録: A3a-64", "heading": true, "chars": 75}, {"id": "Rescue_Scarf", "cat": "ai", "md": "### Rescue Scarf\n\n- 日本語名: **レスキュースカーフ**（推測）\n- 読み（カード画像のファイル名）: `RESUKYUSUKAFU`\n- 収録: A4-155", "heading": true, "chars": 79}, {"id": "Sightseer", "cat": "ai", "md": "### Sightseer\n\n- 日本語名: **かんこうきゃく**（推測）\n- 読み（カード画像のファイル名）: `KANKOUKYAKU`\n- 収録: B2-150, B2-191", "heading": true, "chars": 80}, {"id": "Small_Balloon", "cat": "ai", "md": "### Small Balloon\n\n- 日本語名: **ちいさなふうせん**（推測）\n- 読み（カード画像のファイル名）: `CHIISANAFUUSEN`\n- 収録: B3b-64, B3b-106, B4b-206, B4b-372", "heading": true, "chars": 104}, {"id": "Soothing_Shore", "cat": "ai", "md": "### Soothing Shore\n\n- 日本語名: **癒しの海辺**（推測）\n- 読み（カード画像のファイル名）: `IYASHINOUMIBE`\n- 収録: B4-154, B4b-229, B4b-395", "heading": true, "chars": 93}, {"id": "Squirt_Bottle", "cat": "ai", "md": "### Squirt Bottle\n\n- 日本語名: **ゼニガメじょうろ**（推測）\n- 読み（カード画像のファイル名）: `ZEHIGAMEJOURO`\n- 収録: A4-152", "heading": true, "chars": 79}, {"id": "Starting_Plains", "cat": "ai", "md": "### Starting Plains\n\n- 日本語名: **はじまりの平原**（推測）\n- 読み（カード画像のファイル名）: `HAJIMARINOHEIGEN`\n- 収録: B2-154, B4b-235, B4b-401", "heading": true, "chars": 99}, {"id": "Steel_Apron", "cat": "ai", "md": "### Steel Apron\n\n- 日本語名: **剛鉄のまえかけ**（推測）\n- 読み（カード画像のファイル名）: `GOUTETUNOMAEKAKE`\n- 収録: A4-153", "heading": true, "chars": 79}, {"id": "Team_Rocket_s_Boss", "cat": "ai", "md": "### Team Rocket's Boss\n\n- 日本語名: **ロケット団のボス**（推測）\n- 読み（カード画像のファイル名）: `ROCKETDANNOBOSS`\n- 収録: B4a-71, B4a-87", "heading": true, "chars": 92}, {"id": "Team_Rocket_s_Goo_zooka", "cat": "ai", "md": "### Team Rocket's Goo-zooka\n\n- 日本語名: **ロケット団のベトベトバズーカ**（推測）\n- 読み（カード画像のファイル名）: `ROCKETDANNOBETOBETOBAZOOKA`\n- 収録: B4a-68, B4a-110", "heading": true, "chars": 115}, {"id": "Team_Rocket_s_Master_Plan", "cat": "ai", "md": "### Team Rocket's Master Plan\n\n- 日本語名: **ロケット団の大作戦**（推測）\n- 読み（カード画像のファイル名）: `ROCKETDANNODAISAKUSEN`\n- 収録: B4a-70, B4a-86, B4a-94", "heading": true, "chars": 112}, {"id": "Team_Rocket_s_Researcher", "cat": "ai", "md": "### Team Rocket's Researcher\n\n- 日本語名: **ロケット団の研究員**（推測）\n- 読み（カード画像のファイル名）: `ROCKETDANNOKENKYUUIN`\n- 収録: B4a-69, B4a-85", "heading": true, "chars": 104}, {"id": "Team_Rocket_s_Thieving_Machine", "cat": "ai", "md": "### Team Rocket's Thieving Machine\n\n- 日本語名: **ロケット団のどろぼうマシン**（推測）\n- 読み（カード画像のファイル名）: `ROCKETDANNODOROBOUMASHIN`\n- 収録: B4a-67", "heading": true, "chars": 110}, {"id": "Training_Area", "cat": "ai", "md": "### Training Area\n\n- 日本語名: **トレーニングエリア**（推測）\n- 読み（カード画像のファイル名）: `TORENINGUERIA`\n- 収録: B2-153, B4b-232, B4b-398", "heading": true, "chars": 96}, {"id": "Traveling_Merchant", "cat": "ai", "md": "### Traveling Merchant\n\n- 日本語名: **旅の行商人**（推測）\n- 読み（カード画像のファイル名）: `TABINOGYOUSHOUNIN`\n- 収録: A4a-70, A4a-84", "heading": true, "chars": 92}], "2-confirmed": [{"id": "intro", "cat": "ai", "md": "# 確認済みの日本語名（102）\n\nマーク `src` は紙のポケカの日本語カード名と一致を確認したもの、`ai` は人物名など知識で入れたもの（照合なし）。違っていれば赤を。", "heading": true, "chars": 82}, {"id": "Acerola", "cat": "src", "md": "### Acerola\n\n- 日本語名: **アセロラ**\n- 読み（カード画像のファイル名）: `ACEROLA`\n- 収録: A3-148, A3-190", "heading": true, "chars": 67}, {"id": "Adaman", "cat": "src", "md": "### Adaman\n\n- 日本語名: **セキ**\n- 読み（カード画像のファイル名）: `SEKI`\n- 収録: A2a-75, A2a-90", "heading": true, "chars": 61}, {"id": "Area_Zero", "cat": "ai", "md": "### Area Zero\n\n- 日本語名: **エリアゼロ**\n- 読み（カード画像のファイル名）: `ERIAZERO`\n- 収録: B3a-74", "heading": true, "chars": 63}, {"id": "Armor_Fossil", "cat": "ai", "md": "### Armor Fossil\n\n- 日本語名: **たてのカセキ**\n- 読み（カード画像のファイル名）: `TATENOKASEKI`\n- 収録: A2-145", "heading": true, "chars": 71}, {"id": "Arven", "cat": "src", "md": "### Arven\n\n- 日本語名: **ペパー**\n- 読み（カード画像のファイル名）: `PEPER`\n- 収録: B2a-91, B2a-108, B2a-115, B4b-222", "heading": true, "chars": 79}, {"id": "Barry", "cat": "src", "md": "### Barry\n\n- 日本語名: **ジュン**\n- 読み（カード画像のファイル名）: `JUN`\n- 収録: A2a-74, A2a-89", "heading": true, "chars": 60}, {"id": "Big_Malasada", "cat": "src", "md": "### Big Malasada\n\n- 日本語名: **おおきいマラサダ**\n- 読み（カード画像のファイル名）: `OOKIIMARASADA`\n- 収録: A3-142", "heading": true, "chars": 74}, {"id": "Blaine", "cat": "ai", "md": "### Blaine\n\n- 日本語名: **カツラ**\n- 読み（カード画像のファイル名）: `KATSURA`\n- 収録: A1-221, A1-268", "heading": true, "chars": 65}, {"id": "Blue", "cat": "ai", "md": "### Blue\n\n- 日本語名: **グリーン**\n- 読み（カード画像のファイル名）: `GREEN`\n- 収録: A1a-67, A1a-81", "heading": true, "chars": 62}, {"id": "Brock", "cat": "ai", "md": "### Brock\n\n- 日本語名: **タケシ**\n- 読み（カード画像のファイル名）: `TAKESHI`\n- 収録: A1-224, A1-271", "heading": true, "chars": 64}, {"id": "Calem", "cat": "ai", "md": "### Calem\n\n- 日本語名: **カルム**\n- 読み（カード画像のファイル名）: `CALME`\n- 収録: B2b-68, B2b-82, B4b-215, B4b-381", "heading": true, "chars": 78}, {"id": "Cheren", "cat": "src", "md": "### Cheren\n\n- 日本語名: **チェレン**\n- 読み（カード画像のファイル名）: `CHEREN`\n- 収録: B3-151, B3-192", "heading": true, "chars": 65}, {"id": "Claw_Fossil", "cat": "ai", "md": "### Claw Fossil\n\n- 日本語名: **ツメのカセキ**\n- 読み（カード画像のファイル名）: `TSUMENOKASEKI`\n- 収録: B4-146", "heading": true, "chars": 71}, {"id": "Clemont", "cat": "src", "md": "### Clemont\n\n- 日本語名: **シトロン**\n- 読み（カード画像のファイル名）: `CITRON`\n- 収録: B1a-68, B1a-81, B4b-218, B4b-384", "heading": true, "chars": 82}, {"id": "Copycat", "cat": "ai", "md": "### Copycat\n\n- 日本語名: **ものまねむすめ**\n- 読み（カード画像のファイル名）: `MONOMANEMUSUME`\n- 収録: B1-225, B1-270, B4b-225, B4b-391", "heading": true, "chars": 93}, {"id": "Cover_Fossil", "cat": "ai", "md": "### Cover Fossil\n\n- 日本語名: **ふたのカセキ**\n- 読み（カード画像のファイル名）: `FUTANOKASEKI`\n- 収録: B1-216", "heading": true, "chars": 71}, {"id": "Cynthia", "cat": "src", "md": "### Cynthia\n\n- 日本語名: **シロナ**\n- 読み（カード画像のファイル名）: `SHIRONA`\n- 収録: A2-152, A2-192", "heading": true, "chars": 66}, {"id": "Cyrus", "cat": "ai", "md": "### Cyrus\n\n- 日本語名: **アカギ**\n- 読み（カード画像のファイル名）: `AKAGI`\n- 収録: A2-150, A2-190, A4b-326, A4b-327", "heading": true, "chars": 78}, {"id": "Dawn", "cat": "src", "md": "### Dawn\n\n- 日本語名: **ヒカリ**\n- 読み（カード画像のファイル名）: `HIKARI`\n- 収録: A2-154, A2-194, A4b-342, A4b-343", "heading": true, "chars": 78}, {"id": "Diantha", "cat": "src", "md": "### Diantha\n\n- 日本語名: **カルネ**\n- 読み（カード画像のファイル名）: `CARNE`\n- 収録: B2-149, B2-190, B4b-214, B4b-380", "heading": true, "chars": 80}, {"id": "Dome_Fossil", "cat": "ai", "md": "### Dome Fossil\n\n- 日本語名: **こうらのカセキ**\n- 読み（カード画像のファイル名）: `KOURANOKASEKI`\n- 収録: A1-217", "heading": true, "chars": 72}, {"id": "Drayden", "cat": "ai", "md": "### Drayden\n\n- 日本語名: **シャガ**\n- 読み（カード画像のファイル名）: `SYAGA`\n- 収録: B4-151, B4-191", "heading": true, "chars": 64}, {"id": "Electric_Generator", "cat": "src", "md": "### Electric Generator\n\n- 日本語名: **エレキジェネレーター**\n- 読み（カード画像のファイル名）: `ELECTRICGENERATOR`\n- 収録: B2a-86, B2a-131, B4b-199, B4b-365", "heading": true, "chars": 110}, {"id": "Elesa", "cat": "src", "md": "### Elesa\n\n- 日本語名: **カミツレ**\n- 読み（カード画像のファイル名）: `KAMITSURE`\n- 収録: B3b-66, B3b-83, B4b-422", "heading": true, "chars": 75}, {"id": "Erika", "cat": "src", "md": "### Erika\n\n- 日本語名: **エリカ**\n- 読み（カード画像のファイル名）: `ERIKA`\n- 収録: A1-219, A1-266, A4b-328, A4b-329", "heading": true, "chars": 78}, {"id": "Fantina", "cat": "src", "md": "### Fantina\n\n- 日本語名: **メリッサ**\n- 読み（カード画像のファイル名）: `MELISSA`\n- 収録: B1-224, B1-269", "heading": true, "chars": 67}, {"id": "Giant_Cape", "cat": "src", "md": "### Giant Cape\n\n- 日本語名: **大きなマント**\n- 読み（カード画像のファイル名）: `OOKINAMANTO`\n- 収録: A2-147, A4b-320, A4b-321", "heading": true, "chars": 84}, {"id": "Giovanni", "cat": "ai", "md": "### Giovanni\n\n- 日本語名: **サカキ**\n- 読み（カード画像のファイル名）: `SAKAKI`\n- 収録: A1-223, A1-270, A4b-334, A4b-335", "heading": true, "chars": 82}, {"id": "Gladion", "cat": "src", "md": "### Gladion\n\n- 日本語名: **グラジオ**\n- 読み（カード画像のファイル名）: `GLAZIO`\n- 収録: A3a-67, A3a-81", "heading": true, "chars": 66}, {"id": "Guzma", "cat": "src", "md": "### Guzma\n\n- 日本語名: **グズマ**\n- 読み（カード画像のファイル名）: `GUZUMA`\n- 収録: A3-151, A3-193, A3-208", "heading": true, "chars": 70}, {"id": "Hala", "cat": "src", "md": "### Hala\n\n- 日本語名: **ハラ**\n- 読み（カード画像のファイル名）: `HALA`\n- 収録: B1-222, B1-267", "heading": true, "chars": 59}, {"id": "Hand_Scope", "cat": "src", "md": "### Hand Scope\n\n- 日本語名: **ハンドスコープ**\n- 読み（カード画像のファイル名）: `HANDSCOPE`\n- 収録: PROMO-A-3", "heading": true, "chars": 70}, {"id": "Hau", "cat": "src", "md": "### Hau\n\n- 日本語名: **ハウ**\n- 読み（カード画像のファイル名）: `HAU`\n- 収録: A3b-68, A3b-85", "heading": true, "chars": 57}, {"id": "Helix_Fossil", "cat": "ai", "md": "### Helix Fossil\n\n- 日本語名: **かいのカセキ**\n- 読み（カード画像のファイル名）: `KAINOKASEKI`\n- 収録: A1-216", "heading": true, "chars": 70}, {"id": "Hiker", "cat": "src", "md": "### Hiker\n\n- 日本語名: **やまおとこ**\n- 読み（カード画像のファイル名）: `HIKER`\n- 収録: A4-161, A4-201", "heading": true, "chars": 64}, {"id": "Ilima", "cat": "src", "md": "### Ilima\n\n- 日本語名: **イリマ**\n- 読み（カード画像のファイル名）: `ILIMA`\n- 収録: A3-149, A3-191", "heading": true, "chars": 62}, {"id": "Iono", "cat": "src", "md": "### Iono\n\n- 日本語名: **ナンジャモ**\n- 読み（カード画像のファイル名）: `NANJYAMO`\n- 収録: A2b-69, A2b-88, A4b-340, A4b-341", "heading": true, "chars": 82}, {"id": "Irida", "cat": "src", "md": "### Irida\n\n- 日本語名: **カイ**\n- 読み（カード画像のファイル名）: `KAI`\n- 収録: A2a-72, A2a-87, A4b-330, A4b-331", "heading": true, "chars": 75}, {"id": "Iris", "cat": "src", "md": "### Iris\n\n- 日本語名: **アイリス**\n- 読み（カード画像のファイル名）: `IRIS`\n- 収録: B2b-67, B2b-81, B4b-212, B4b-378", "heading": true, "chars": 77}, {"id": "Jasmine", "cat": "src", "md": "### Jasmine\n\n- 日本語名: **ミカン**\n- 読み（カード画像のファイル名）: `MIKAN`\n- 収録: A4-160, A4-200", "heading": true, "chars": 64}, {"id": "Jaw_Fossil", "cat": "ai", "md": "### Jaw Fossil\n\n- 日本語名: **アゴのカセキ**\n- 読み（カード画像のファイル名）: `AGONOKASEKI`\n- 収録: B2-144", "heading": true, "chars": 68}, {"id": "Juliana", "cat": "ai", "md": "### Juliana\n\n- 日本語名: **アオイ**\n- 読み（カード画像のファイル名）: `AOI`\n- 収録: B3a-71, B3a-86, B4b-213, B4b-379", "heading": true, "chars": 78}, {"id": "Kiawe", "cat": "src", "md": "### Kiawe\n\n- 日本語名: **カキ**\n- 読み（カード画像のファイル名）: `KAKI`\n- 収録: A3-150, A3-192", "heading": true, "chars": 60}, {"id": "Koga", "cat": "ai", "md": "### Koga\n\n- 日本語名: **キョウ**\n- 読み（カード画像のファイル名）: `KYOU`\n- 収録: A1-222, A1-269", "heading": true, "chars": 60}, {"id": "Korrina", "cat": "src", "md": "### Korrina\n\n- 日本語名: **コルニ**\n- 読み（カード画像のファイル名）: `CORNI`\n- 収録: B3-149, B3-190, B4b-217, B4b-383", "heading": true, "chars": 80}, {"id": "Lana", "cat": "src", "md": "### Lana\n\n- 日本語名: **スイレン**\n- 読み（カード画像のファイル名）: `SUIREN`\n- 収録: A3-152, A3-194", "heading": true, "chars": 63}, {"id": "Leaf", "cat": "ai", "md": "### Leaf\n\n- 日本語名: **リーフ**\n- 読み（カード画像のファイル名）: `LEAF`\n- 収録: A1a-68, A1a-82, A4b-346, A4b-347", "heading": true, "chars": 76}, {"id": "Leftovers", "cat": "src", "md": "### Leftovers\n\n- 日本語名: **たべのこし**\n- 読み（カード画像のファイル名）: `TABENOKOSHI`\n- 収録: A3b-67", "heading": true, "chars": 67}, {"id": "Lillie", "cat": "src", "md": "### Lillie\n\n- 日本語名: **リーリエ**\n- 読み（カード画像のファイル名）: `LILIE`\n- 収録: A3-155, A3-197, A3-209, A4b-348", "heading": true, "chars": 79}, {"id": "Lisia", "cat": "src", "md": "### Lisia\n\n- 日本語名: **ルチア**\n- 読み（カード画像のファイル名）: `RUCHIA`\n- 収録: B1-226, B1-271, B4b-226, B4b-392", "heading": true, "chars": 79}, {"id": "Looker", "cat": "src", "md": "### Looker\n\n- 日本語名: **ハンサム**\n- 読み（カード画像のファイル名）: `HANDSOME`\n- 収録: A3a-68, A3a-82", "heading": true, "chars": 67}, {"id": "Lt_Surge", "cat": "ai", "md": "### Lt. Surge\n\n- 日本語名: **マチス**\n- 読み（カード画像のファイル名）: `MATISSE`\n- 収録: A1-226, A1-273", "heading": true, "chars": 67}, {"id": "Lucky_Egg", "cat": "src", "md": "### Lucky Egg\n\n- 日本語名: **しあわせタマゴ**\n- 読み（カード画像のファイル名）: `HAPPINESSEGG`\n- 収録: B3-148, B4b-205, B4b-371", "heading": true, "chars": 85}, {"id": "Lum_Berry", "cat": "src", "md": "### Lum Berry\n\n- 日本語名: **ラムのみ**\n- 読み（カード画像のファイル名）: `RAMUNOMI`\n- 収録: A2-149", "heading": true, "chars": 62}, {"id": "Lusamine", "cat": "src", "md": "### Lusamine\n\n- 日本語名: **ルザミーネ**\n- 読み（カード画像のファイル名）: `LUSAMINE`\n- 収録: A3a-69, A3a-83, A4b-350, A4b-351", "heading": true, "chars": 86}, {"id": "Lyra", "cat": "ai", "md": "### Lyra\n\n- 日本語名: **コトネ**\n- 読み（カード画像のファイル名）: `KOTONE`\n- 収録: A4-157, A4-197, A4b-332, A4b-333", "heading": true, "chars": 78}, {"id": "Mallow", "cat": "src", "md": "### Mallow\n\n- 日本語名: **マオ**\n- 読み（カード画像のファイル名）: `MAO`\n- 収録: A3-154, A3-196", "heading": true, "chars": 60}, {"id": "Marlon", "cat": "ai", "md": "### Marlon\n\n- 日本語名: **シズイ**\n- 読み（カード画像のファイル名）: `SHIZUI`\n- 収録: B1-221, B1-266", "heading": true, "chars": 64}, {"id": "Mars", "cat": "src", "md": "### Mars\n\n- 日本語名: **マーズ**\n- 読み（カード画像のファイル名）: `MARS`\n- 収録: A2-155, A2-195, A4b-344, A4b-345", "heading": true, "chars": 76}, {"id": "May", "cat": "ai", "md": "### May\n\n- 日本語名: **ハルカ**\n- 読み（カード画像のファイル名）: `HARUKA`\n- 収録: B1-223, B1-268, B4b-220, B4b-386", "heading": true, "chars": 77}, {"id": "Mesagoza", "cat": "src", "md": "### Mesagoza\n\n- 日本語名: **テーブルシティ**\n- 読み（カード画像のファイル名）: `TABLECITY`\n- 収録: B2a-93, B4b-231, B4b-397", "heading": true, "chars": 82}, {"id": "Misty", "cat": "src", "md": "### Misty\n\n- 日本語名: **カスミ**\n- 読み（カード画像のファイル名）: `KASUMI`\n- 収録: A1-220, A1-267", "heading": true, "chars": 63}, {"id": "Morty", "cat": "src", "md": "### Morty\n\n- 日本語名: **マツバ**\n- 読み（カード画像のファイル名）: `MATSUBA`\n- 収録: A4a-71, A4a-85", "heading": true, "chars": 64}, {"id": "Nemona", "cat": "src", "md": "### Nemona\n\n- 日本語名: **ネモ**\n- 読み（カード画像のファイル名）: `NEMO`\n- 収録: B2a-90, B2a-107", "heading": true, "chars": 62}, {"id": "Old_Amber", "cat": "src", "md": "### Old Amber\n\n- 日本語名: **ひみつのコハク**\n- 読み（カード画像のファイル名）: `HIMITSUNOKOHAKU`\n- 収録: A1-218, A1a-63, A4b-312, A4b-313", "heading": true, "chars": 95}, {"id": "Parasol_Lady", "cat": "src", "md": "### Parasol Lady\n\n- 日本語名: **パラソルおねえさん**\n- 読み（カード画像のファイル名）: `PARASOLGIRL`\n- 収録: B3-152, B3-193", "heading": true, "chars": 80}, {"id": "Penny", "cat": "src", "md": "### Penny\n\n- 日本語名: **ボタン**\n- 読み（カード画像のファイル名）: `BOTAN`\n- 収録: A3b-69, A3b-86, B2a-92, B2a-109", "heading": true, "chars": 77}, {"id": "Piers", "cat": "src", "md": "### Piers\n\n- 日本語名: **ネズ**\n- 読み（カード画像のファイル名）: `NEZU`\n- 収録: B2-152, B2-193", "heading": true, "chars": 60}, {"id": "Plume_Fossil", "cat": "ai", "md": "### Plume Fossil\n\n- 日本語名: **はねのカセキ**\n- 読み（カード画像のファイル名）: `HANENOKASEKI`\n- 収録: B1-214", "heading": true, "chars": 71}, {"id": "Poison_Barb", "cat": "src", "md": "### Poison Barb\n\n- 日本語名: **どくバリ**\n- 読み（カード画像のファイル名）: `DOKUBARI`\n- 収録: A3-146", "heading": true, "chars": 64}, {"id": "Pok_Ball", "cat": "src", "md": "### Poké Ball\n\n- 日本語名: **モンスターボール**\n- 読み（カード画像のファイル名）: `MONSTERBALL`\n- 収録: A2b-111, PROMO-A-5", "heading": true, "chars": 80}, {"id": "Pok_dex", "cat": "src", "md": "### Pokédex\n\n- 日本語名: **ポケモン図鑑**\n- 読み（カード画像のファイル名）: `POKEMONZUKAN`\n- 収録: PROMO-A-4, PROMO-A-8", "heading": true, "chars": 80}, {"id": "Pok_mon_Center_Lady", "cat": "src", "md": "### Pokémon Center Lady\n\n- 日本語名: **ポケモンセンターのお姉さん**\n- 読み（カード画像のファイル名）: `POKEMONCENTERNOONEESAN`\n- 収録: A2b-70, A2b-89", "heading": true, "chars": 101}, {"id": "Pok_mon_Communication", "cat": "src", "md": "### Pokémon Communication\n\n- 日本語名: **ポケモン通信**\n- 読み（カード画像のファイル名）: `POKEMONTSUUSHIN`\n- 収録: A2-146, A4b-316, A4b-317", "heading": true, "chars": 99}, {"id": "Pok_mon_Flute", "cat": "ai", "md": "### Pokémon Flute\n\n- 日本語名: **ポケモンのふえ**\n- 読み（カード画像のファイル名）: `POKEMONNOFUE`\n- 収録: A1a-64", "heading": true, "chars": 73}, {"id": "Potion", "cat": "src", "md": "### Potion\n\n- 日本語名: **きずぐすり**\n- 読み（カード画像のファイル名）: `KIZUGUSURI`\n- 収録: PROMO-A-1", "heading": true, "chars": 66}, {"id": "Professor_Sada", "cat": "ai", "md": "### Professor Sada\n\n- 日本語名: **オーリム博士**\n- 読み（カード画像のファイル名）: `OLIMHAKASE`\n- 収録: B3a-72, B3a-87", "heading": true, "chars": 78}, {"id": "Professor_Turo", "cat": "ai", "md": "### Professor Turo\n\n- 日本語名: **フトゥー博士**\n- 読み（カード画像のファイル名）: `FUTUHAKASE`\n- 収録: B3a-73, B3a-88", "heading": true, "chars": 78}, {"id": "Professor_s_Research", "cat": "src", "md": "### Professor's Research\n\n- 日本語名: **博士の研究**\n- 読み（カード画像のファイル名）: `HAKASENOKENKYU`\n- 収録: A4b-373, PROMO-A-7", "heading": true, "chars": 91}, {"id": "Rare_Candy", "cat": "src", "md": "### Rare Candy\n\n- 日本語名: **ふしぎなアメ**\n- 読み（カード画像のファイル名）: `FUSHIGINAAME`\n- 収録: A3-144, A4b-314, A4b-315, A4b-379", "heading": true, "chars": 93}, {"id": "Red", "cat": "ai", "md": "### Red\n\n- 日本語名: **レッド**\n- 読み（カード画像のファイル名）: `RED`\n- 収録: A2b-71, A2b-90, A4b-352, A4b-353", "heading": true, "chars": 74}, {"id": "Red_Card", "cat": "src", "md": "### Red Card\n\n- 日本語名: **レッドカード**\n- 読み（カード画像のファイル名）: `REDCARD`\n- 収録: PROMO-A-6", "heading": true, "chars": 65}, {"id": "Rocky_Helmet", "cat": "src", "md": "### Rocky Helmet\n\n- 日本語名: **ゴツゴツメット**\n- 読み（カード画像のファイル名）: `GOTSUGOTSUMETTO`\n- 収録: A2-148, A4b-322, A4b-323", "heading": true, "chars": 91}, {"id": "Root_Fossil", "cat": "ai", "md": "### Root Fossil\n\n- 日本語名: **ねっこのカセキ**\n- 読み（カード画像のファイル名）: `NEKKONOKASEKI`\n- 収録: B4-147", "heading": true, "chars": 72}, {"id": "Rotom_Dex", "cat": "src", "md": "### Rotom Dex\n\n- 日本語名: **ロトム図鑑**\n- 読み（カード画像のファイル名）: `ROTOMUZUKAN`\n- 収録: A3-145", "heading": true, "chars": 66}, {"id": "Sabrina", "cat": "ai", "md": "### Sabrina\n\n- 日本語名: **ナツメ**\n- 読み（カード画像のファイル名）: `NATSUME`\n- 収録: A1-225, A1-272, A4b-338, A4b-339", "heading": true, "chars": 82}, {"id": "Sail_Fossil", "cat": "ai", "md": "### Sail Fossil\n\n- 日本語名: **ヒレのカセキ**\n- 読み（カード画像のファイル名）: `HIRENOKASEKI`\n- 収録: B2-146", "heading": true, "chars": 70}, {"id": "Serena", "cat": "src", "md": "### Serena\n\n- 日本語名: **セレナ**\n- 読み（カード画像のファイル名）: `SERENA`\n- 収録: B1a-69, B1a-82, B4b-219, B4b-385", "heading": true, "chars": 80}, {"id": "Silver", "cat": "ai", "md": "### Silver\n\n- 日本語名: **シルバー**\n- 読み（カード画像のファイル名）: `SILVER`\n- 収録: A4-158, A4-198, A4b-336, A4b-337", "heading": true, "chars": 81}, {"id": "Sitrus_Berry", "cat": "src", "md": "### Sitrus Berry\n\n- 日本語名: **オボンのみ**\n- 読み（カード画像のファイル名）: `OBONNOMI`\n- 収録: B1-218", "heading": true, "chars": 66}, {"id": "Skull_Fossil", "cat": "ai", "md": "### Skull Fossil\n\n- 日本語名: **ずがいのカセキ**\n- 読み（カード画像のファイル名）: `ZUGAINOKASEKI`\n- 収録: A2-144", "heading": true, "chars": 73}, {"id": "Skyla", "cat": "src", "md": "### Skyla\n\n- 日本語名: **フウロ**\n- 読み（カード画像のファイル名）: `HUURO`\n- 収録: B4-152, B4-192, B4b-221, B4b-387", "heading": true, "chars": 78}, {"id": "Sophocles", "cat": "src", "md": "### Sophocles\n\n- 日本語名: **マーマネ**\n- 読み（カード画像のファイル名）: `MAMANE`\n- 収録: A3-153, A3-195", "heading": true, "chars": 68}, {"id": "Team_Galactic_Grunt", "cat": "ai", "md": "### Team Galactic Grunt\n\n- 日本語名: **ギンガ団のしたっぱ**\n- 読み（カード画像のファイル名）: `GINGADANNOSHITAPPA`\n- 収録: A2-151, A2-191", "heading": true, "chars": 93}, {"id": "Team_Rocket_Grunt", "cat": "ai", "md": "### Team Rocket Grunt\n\n- 日本語名: **ロケット団のしたっぱ**\n- 読み（カード画像のファイル名）: `ROCKETDANNOSHITAPPA`\n- 収録: A2b-72, A2b-91", "heading": true, "chars": 93}, {"id": "Team_Star_Grunt", "cat": "src", "md": "### Team Star Grunt\n\n- 日本語名: **スター団のしたっぱ**\n- 読み（カード画像のファイル名）: `TEAMSTARGRUNT`\n- 収録: B2a-88, B2a-105", "heading": true, "chars": 85}, {"id": "Volkner", "cat": "src", "md": "### Volkner\n\n- 日本語名: **デンジ**\n- 読み（カード画像のファイル名）: `DENZI`\n- 収録: A2-153, A2-193", "heading": true, "chars": 64}, {"id": "Wallace", "cat": "src", "md": "### Wallace\n\n- 日本語名: **ミクリ**\n- 読み（カード画像のファイル名）: `MIKURI`\n- 収録: B3b-68, B3b-85, B4b-223, B4b-389", "heading": true, "chars": 81}, {"id": "Wally", "cat": "src", "md": "### Wally\n\n- 日本語名: **ミツル**\n- 読み（カード画像のファイル名）: `MITSURU`\n- 収録: B4-153, B4-193, B4b-224, B4b-390", "heading": true, "chars": 80}, {"id": "Whitney", "cat": "src", "md": "### Whitney\n\n- 日本語名: **アカネ**\n- 読み（カード画像のファイル名）: `AKANE`\n- 収録: A4a-69, A4a-83", "heading": true, "chars": 64}, {"id": "Will", "cat": "src", "md": "### Will\n\n- 日本語名: **イツキ**\n- 読み（カード画像のファイル名）: `ITSUKI`\n- 収録: A4-156, A4-196", "heading": true, "chars": 62}, {"id": "X_Speed", "cat": "ai", "md": "### X Speed\n\n- 日本語名: **スピーダー**\n- 読み（カード画像のファイル名）: `SPEEDER`\n- 収録: PROMO-A-2", "heading": true, "chars": 63}], "3-pokemon": [{"id": "intro", "cat": "ai", "md": "# ポケモンの例外（18）\n\nポケモン名は自動変換だが、フォルム違いなど自動で変換できないものだけ手で入れている。", "heading": true, "chars": 54}, {"id": "Castform_Rainy_Form", "cat": "ai", "md": "### Castform Rainy Form\n\n- 日本語名: **ポワルン あまみずのすがた（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `POWALENAMAMIZUNOSUGATA`\n- 収録: B3-40", "heading": true, "chars": 107}, {"id": "Castform_Snowy_Form", "cat": "ai", "md": "### Castform Snowy Form\n\n- 日本語名: **ポワルン ゆきぐものすがた（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `POWALENYUKIGUMONOSUGATA`\n- 収録: B3-41", "heading": true, "chars": 108}, {"id": "Castform_Sunny_Form", "cat": "ai", "md": "### Castform Sunny Form\n\n- 日本語名: **ポワルン たいようのすがた（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `POWALENTAIYOUNOSUGATA`\n- 収録: PROMO-B-57, B3-24", "heading": true, "chars": 117}, {"id": "Cornerstone_Mask_Ogerpon", "cat": "ai", "md": "### Cornerstone Mask Ogerpon\n\n- 日本語名: **オーガポン いしずえのめん（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `OGERPONISHIZUENOMEN`\n- 収録: B2-93", "heading": true, "chars": 109}, {"id": "Dawn_Wings_Necrozma", "cat": "ai", "md": "### Dawn Wings Necrozma\n\n- 日本語名: **月食ネクロズマ（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `NECROZMAAKATSUKINOTSUBASA`\n- 収録: PROMO-A-78", "heading": true, "chars": 110}, {"id": "Dusk_Mane_Necrozma", "cat": "ai", "md": "### Dusk Mane Necrozma\n\n- 日本語名: **日食ネクロズマ（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `NECROZMATASOGARENOTATEGAMI`\n- 収録: PROMO-A-79", "heading": true, "chars": 110}, {"id": "Fan_Rotom", "cat": "ai", "md": "### Fan Rotom\n\n- 日本語名: **スピンロトム（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `SPIN ROTOM`\n- 収録: A2-142", "heading": true, "chars": 80}, {"id": "Frost_Rotom", "cat": "ai", "md": "### Frost Rotom\n\n- 日本語名: **フロストロトム（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `FROST ROTOM`\n- 収録: A2-48", "heading": true, "chars": 83}, {"id": "Hearthflame_Mask_Ogerpon", "cat": "ai", "md": "### Hearthflame Mask Ogerpon\n\n- 日本語名: **オーガポン かまどのめん（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `OGERPONKAMADONOMEN`\n- 収録: B2-27, B4b-51, B4b-272", "heading": true, "chars": 122}, {"id": "Heat_Rotom", "cat": "ai", "md": "### Heat Rotom\n\n- 日本語名: **ヒートロトム（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `HEAT ROTOM`\n- 収録: A2-30", "heading": true, "chars": 80}, {"id": "Mow_Rotom", "cat": "ai", "md": "### Mow Rotom\n\n- 日本語名: **カットロトム（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `CUT ROTOM`\n- 収録: A2-21", "heading": true, "chars": 78}, {"id": "Rapid_Strike_Urshifu", "cat": "ai", "md": "### Rapid Strike Urshifu\n\n- 日本語名: **れんげきウーラオス（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `WULAOSURENGEKINOKATA`\n- 収録: B3-51", "heading": true, "chars": 103}, {"id": "Single_Strike_Urshifu", "cat": "ai", "md": "### Single Strike Urshifu\n\n- 日本語名: **いちげきウーラオス（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `WULAOSUICHIGEKINOKATA`\n- 収録: B3-113", "heading": true, "chars": 106}, {"id": "Teal_Mask_Ogerpon", "cat": "ai", "md": "### Teal Mask Ogerpon\n\n- 日本語名: **オーガポン みどりのめん（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `OGERPONMIDORINOMEN`\n- 収録: B4b-27, B4b-257", "heading": true, "chars": 109}, {"id": "Teal_MaskOgerpon", "cat": "ai", "md": "### Teal MaskOgerpon\n\n- 日本語名: **オーガポン みどりのめん（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `OGERPONMIDORINOMEN`\n- 収録: B4-19", "heading": true, "chars": 100}, {"id": "Ultra_Necrozma", "cat": "ai", "md": "### Ultra Necrozma\n\n- 日本語名: **ウルトラネクロズマ（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `?`\n- 収録: -", "heading": true, "chars": 75}, {"id": "Wash_Rotom", "cat": "ai", "md": "### Wash Rotom\n\n- 日本語名: **ウォッシュロトム（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `WASH ROTOM`\n- 収録: A2-47", "heading": true, "chars": 82}, {"id": "Wellspring_Mask_Ogerpon", "cat": "ai", "md": "### Wellspring Mask Ogerpon\n\n- 日本語名: **オーガポン いどのめん（exが付く場合は末尾にex）**\n- 読み（カード画像のファイル名）: `OGERPONIDONOMEN`\n- 収録: B2-48", "heading": true, "chars": 102}]};
+const CATS=[["you","私が書いた"],["edit","赤入れで直した"],["rw","会話の指示で直した"],["src","一次情報"],["ai","AIが考えた"]];
+const QAS=[["aiish","AIっぽい"],["cut","削る"],["short","短く"],["weak","弱い"],["fact","事実が怪しい"],["mine","自分で書く"]];
+const LBL=Object.fromEntries(QAS);
+let DOCID=Object.keys(DATA)[0]||"doc";
+let blocks=[], ids=new Set(), threads={}, allThreads={}, db=null, open=null, drafts={};
+const off=new Set();
+const $=i=>document.getElementById(i);
+const sideOf=id=>document.querySelector(`[data-side="${id}"]`);
+const blkOf=id=>document.querySelector(`.row[data-id="${id}"] .blk`);
+const lastIsMozk=e=>Array.isArray(e)&&e.length&&e[e.length-1].who==="mozk";
+
+try{drafts=JSON.parse(localStorage.getItem("redline-drafts")||"{}")}catch(e){drafts={}}
+const saveDrafts=()=>{try{localStorage.setItem("redline-drafts",JSON.stringify(drafts))}catch(e){}};
+
+CATS.forEach(([c,label])=>{
+ const b=document.createElement("button");
+ b.className="key";b.type="button";b.setAttribute("aria-pressed","true");
+ b.innerHTML=`<span class="sw" style="background:var(--${c})"></span>${label} <span class="n" id="n-${c}"></span>`;
+ b.onclick=()=>{off.has(c)?off.delete(c):off.add(c);b.setAttribute("aria-pressed",String(!off.has(c)));dim();};
+ $("legend").insertBefore(b,$("status"));
+});
+
+function buildTabs(){
+ const names=Object.keys(DATA);
+ $("tabs").hidden=names.length<2;
+ $("tabs").innerHTML="";
+ names.forEach(n=>{
+  const t=document.createElement("button");t.className="tab";t.type="button";
+  t.setAttribute("aria-selected",String(n===DOCID));
+  t.appendChild(document.createTextNode(n));
+  const w=document.createElement("span");w.className="w";w.dataset.wait=n;t.appendChild(w);
+  t.onclick=()=>{
+   if(n===DOCID)return;
+   DOCID=n;
+   [...$("tabs").children].forEach(c=>c.setAttribute("aria-selected",String(c===t)));
+   syncThreads();buildRows();
+  };
+  $("tabs").appendChild(t);
+ });
+}
+
+function buildRows(){
+ blocks=DATA[DOCID]||[];ids=new Set(blocks.map(b=>b.id));
+ rows.innerHTML="";open=null;
+ blocks.forEach(b=>{
+  const row=document.createElement("div");row.className="row";row.dataset.id=b.id;
+  const el=document.createElement("div");
+  el.className="blk"+(b.heading?" head":"")+((b.md.startsWith("|")||b.md.startsWith("```"))?" pre":"");
+  el.dataset.c=b.cat;
+  el.innerHTML=`<span class="bid">${b.id}</span><span class="rounds" data-rounds="${b.id}"></span>`;
+  el.appendChild(document.createTextNode(b.md.replace(/^#+\s*/,"")));
+  el.onclick=()=>{open=(open===b.id)?null:b.id;draw();};
+  const side=document.createElement("div");side.className="side";side.dataset.side=b.id;
+  row.append(el,side);rows.appendChild(row);
+ });
+ ratio();dim();draw();
+}
+const rows=$("rows");
+
+function ratio(){
+ const t={},total=blocks.reduce((a,b)=>a+b.chars,0)||1;
+ blocks.forEach(b=>t[b.cat]=(t[b.cat]||0)+b.chars);
+ $("ratio").innerHTML="";
+ CATS.forEach(([c,label])=>{
+  const pct=(t[c]||0)/total*100;
+  const s=document.createElement("span");s.style.width=pct+"%";s.style.background=`var(--${c})`;
+  s.title=`${label} ${pct.toFixed(0)}%`;$("ratio").appendChild(s);
+  $("n-"+c).textContent=Math.round(pct)+"%";
+ });
+}
+function dim(){document.querySelectorAll(".blk").forEach(e=>e.classList.toggle("dim",off.has(e.dataset.c)));}
+function syncThreads(){
+ threads={};
+ Object.entries(allThreads).forEach(([k,v])=>{
+  if(k.startsWith(DOCID+"__")) threads[k.slice(DOCID.length+2)]=v;});
+}
+function tabWaits(){
+ Object.keys(DATA).forEach(n=>{
+  const el=document.querySelector(`[data-wait="${n}"]`);if(!el)return;
+  const own=new Set(DATA[n].map(b=>b.id));
+  const w=Object.entries(allThreads).filter(([k,v])=>{
+   const i=k.indexOf("__");
+   return k.slice(0,i)===n && own.has(k.slice(i+2)) && lastIsMozk(v);}).length;
+  el.textContent=w?String(w):"";
+ });
+}
+
+function entryEl(e){
+ const d=document.createElement("div");d.className="entry "+(e.who==="mozk"?"mozk":"claude");
+ const w=document.createElement("span");w.className="who";
+ w.textContent=e.who==="mozk"?"赤入れ":"直した";d.appendChild(w);
+ if(e.action&&LBL[e.action]){const c=document.createElement("span");c.className="chip";
+  c.textContent=LBL[e.action];d.appendChild(c);}
+ if(e.text){const p=document.createElement("p");p.className="etext";p.textContent=e.text;d.appendChild(p);}
+ return d;
+}
+
+function buildPad(b,side){
+ const dk=DOCID+"__"+b.id;
+ const dr=drafts[dk]||{action:"",text:""};
+ const pad=document.createElement("div");pad.className="pad";
+ pad.addEventListener("click",e=>e.stopPropagation());
+ const qas=document.createElement("div");qas.className="qas";
+ const ta=document.createElement("textarea");
+ ta.id="ta-"+dk;ta.placeholder="どこがどう気になるか（任意）";ta.value=dr.text;
+ ta.oninput=()=>{drafts[dk]={action:(drafts[dk]||{}).action||"",text:ta.value};saveDrafts();};
+ QAS.forEach(([k,label])=>{
+  const q=document.createElement("button");q.className="qa";q.type="button";q.textContent=label;q.dataset.k=k;
+  q.setAttribute("aria-pressed",String(dr.action===k));
+  q.onclick=()=>{
+   const cur=(drafts[dk]||{}).action||"";
+   const action=(cur===k)?"":k;
+   drafts[dk]={action,text:ta.value};saveDrafts();
+   qas.querySelectorAll(".qa").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.k===action)));
+  };
+  qas.appendChild(q);
+ });
+ const act=document.createElement("div");act.className="act";
+ const s=document.createElement("button");s.className="send";s.type="button";s.textContent="赤を入れる";
+ s.onclick=async()=>{
+  const d=drafts[dk]||{action:"",text:""};const text=ta.value.trim();
+  if(!d.action&&!text){open=null;draw();return;}
+  s.disabled=true;
+  await append(b.id,{who:"mozk",kind:"note",action:d.action||"",text,at:Date.now()});
+  delete drafts[dk];saveDrafts();open=null;draw();
+ };
+ const c=document.createElement("button");c.className="send ghost";c.type="button";c.textContent="やめる";
+ c.onclick=()=>{delete drafts[dk];saveDrafts();open=null;draw();};
+ const h=document.createElement("span");h.className="hint";h.textContent=b.id;
+ act.append(s,c,h);pad.append(qas,ta,act);side.appendChild(pad);
+ ta.focus();
+}
+
+function drawBlock(b){
+ const side=sideOf(b.id);if(!side)return;
+ const es=threads[b.id]||[];
+ const el=blkOf(b.id);
+ el.classList.toggle("waiting",lastIsMozk(es));
+ el.classList.toggle("open",open===b.id);
+ const r=el.querySelector(`[data-rounds="${b.id}"]`);
+ const n=es.filter(e=>e.who==="mozk").length;
+ r.textContent=n?`赤${n}`:"";
+ if(open===b.id && side.querySelector("textarea")) return;
+ side.onclick=null;side.innerHTML="";side.className="side";
+ es.forEach(e=>side.appendChild(entryEl(e)));
+ if(open===b.id){buildPad(b,side);return;}
+ const add=document.createElement("div");
+ add.className="side empty";
+ add.style.padding=es.length?"0":"9px 0 0";
+ add.textContent=es.length?"＋ さらに赤を入れる":"＋ 赤を入れる";
+ add.onclick=()=>{open=b.id;draw();};
+ side.appendChild(add);
+}
+function draw(){blocks.forEach(drawBlock);drawGone();tabWaits();}
+
+function drawGone(){
+ const orphans=Object.keys(threads).filter(id=>!ids.has(id)).sort();
+ $("goneWrap").hidden=!orphans.length;
+ const box=$("gone");box.innerHTML="";
+ orphans.forEach(id=>{
+  const d=document.createElement("div");d.className="gone";
+  const h=document.createElement("h3");h.textContent=id+"（削除済み）";d.appendChild(h);
+  (threads[id]||[]).forEach(e=>d.appendChild(entryEl(e)));
+  box.appendChild(d);
+ });
+}
+
+async function append(id,entry){
+ if(!db){$("status").textContent="保存できません（この画面では未接続）";return;}
+ const key=DOCID+"__"+id;
+ const cur=(threads[id]||[]).slice();cur.push(entry);
+ threads[id]=cur;allThreads[key]=cur;
+ try{
+  await db.doc(`threads/${key}`).set({entries:cur});
+  $("status").textContent="赤を入れました";
+ }catch(e){
+  $("status").textContent=(e&&e.code==="invalid_argument")?"書き込み権限がありません":"保存に失敗しました";
+  cur.pop();threads[id]=cur;allThreads[key]=cur;draw();
+ }
+}
+
+buildTabs();buildRows();
+(async()=>{
+ db=await claude.use("db");
+ if(!db){$("status").textContent="読み取り専用（赤は保存されません）";return;}
+ $("status").textContent="接続済み";
+ db.collection("threads").onSnapshot(s=>{
+  const next={};
+  s.docs.forEach(d=>{
+   const v=d.data()||{};
+   next[d.id]=Array.isArray(v.entries)?v.entries:[];
+  });
+  allThreads=next;syncThreads();draw();
+ },e=>{$("status").textContent="同期が切れました（再読み込みしてください）";});
+})();
+</script>
