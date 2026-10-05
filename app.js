@@ -18,7 +18,7 @@ const $ = (id) => document.getElementById(id);
 const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 
 // ブログ・SNS用の出力（まとめ画像・Markdown・HTML）に入れる作成者クレジット
-const CREDIT = "作成: Mozk";
+const CREDIT = "作成: もずく・らてっくす";
 const NAME_NOTE = "カード名の日本語表記は非公式のもので、一部推測を含みます。正確な名前はゲーム内でご確認ください。";
 
 let database = null;
@@ -117,10 +117,20 @@ function drawQr(context, payload, x, y, size) {
   }
 }
 
+// 保存用のQR画像。出所が分かるよう、下に小さくクレジットを入れる
 function qrCanvas(payload) {
+  const size = 720;
   const canvas = document.createElement("canvas");
-  canvas.width = canvas.height = 720;
-  drawQr(canvas.getContext("2d"), payload, 0, 0, 720);
+  canvas.width = size;
+  canvas.height = size + 36;
+  const context = canvas.getContext("2d");
+  context.fillStyle = "#fff";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  drawQr(context, payload, 0, 0, size);
+  context.fillStyle = "#a0a6b8";
+  context.font = `18px ${FONT}`;
+  context.textAlign = "center";
+  context.fillText(CREDIT, size / 2, size + 14);
   return canvas;
 }
 
@@ -471,6 +481,7 @@ $("show-prompt").addEventListener("click", async () => {
 
 async function start() {
   renderEnergyPicker();
+  $("qr-credit").textContent = CREDIT;
   // デッキURLから開いたときは注意事項と使い方を畳んで、QRを主役にする
   if (/[?&](d|c)=/.test(location.search)) {
     $("guide").open = false;
