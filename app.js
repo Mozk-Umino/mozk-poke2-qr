@@ -17,6 +17,8 @@ import { JapaneseNames } from "./ja-names.js";
 const $ = (id) => document.getElementById(id);
 const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 
+// ブログ・SNS用の出力（まとめ画像・Markdown・HTML）に入れる作成者クレジット
+const CREDIT = "作成: Mozk";
 const NAME_NOTE = "カード名の日本語表記は非公式のもので、一部推測を含みます。正確な名前はゲーム内でご確認ください。";
 
 let database = null;
@@ -193,6 +195,9 @@ function deckCardCanvas(deck) {
   context.fillStyle = "#a0a6b8";
   context.font = `18px ${FONT}`;
   context.fillText(`${location.host}${location.pathname}`, pad, height - 36);
+  context.textAlign = "right";
+  context.fillText(CREDIT, width - pad, height - 36);
+  context.textAlign = "left";
   return canvas;
 }
 
@@ -257,6 +262,8 @@ function deckMarkdown(deck) {
     "",
     `[デッキのQRコードを表示](${deckUrl(deck)})`,
     "",
+    CREDIT,
+    "",
   ].join("\n");
 }
 
@@ -273,6 +280,7 @@ function deckHtml(deck) {
     `  <ul>\n${items(deck.trainers)}\n  </ul>`,
     `  <p><a href="${escapeHtml(deckUrl(deck))}">デッキのQRコードを表示</a></p>`,
     `  <p><small>${NAME_NOTE}</small></p>`,
+    `  <p><small>${CREDIT}</small></p>`,
     `</div>`,
     "",
   ].join("\n");
