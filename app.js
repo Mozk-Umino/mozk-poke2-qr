@@ -437,8 +437,34 @@ $("share-url").addEventListener("click", async (event) => {
   copyText(url, event.target);
 });
 
+// 使い方: AIに貼るプロンプト（ai-prompt.txt）
+let promptText = null;
+async function loadPrompt() {
+  if (promptText) return promptText;
+  const response = await fetch("ai-prompt.txt");
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  promptText = await response.text();
+  $("prompt-text").value = promptText;
+  return promptText;
+}
+$("copy-prompt").addEventListener("click", async (event) => {
+  try {
+    await copyText(await loadPrompt(), event.target);
+  } catch {
+    event.target.textContent = "読み込めませんでした";
+  }
+});
+$("show-prompt").addEventListener("click", async () => {
+  try {
+    await loadPrompt();
+  } catch { /* 読めなければ空のまま */ }
+  $("prompt-text").classList.toggle("hidden");
+});
+
 async function start() {
   renderEnergyPicker();
+  // デッキURLから開いたときは使い方を畳んで、QRを主役にする
+  if (/[?&](d|c)=/.test(location.search)) $("guide").open = false;
   try {
     const fetchJson = async (url) => {
       const response = await fetch(url);

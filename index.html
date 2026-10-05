@@ -16,6 +16,39 @@
 
   <p id="db-status" class="status">カードDBを読み込み中…</p>
 
+  <!-- 使い方 -->
+  <section>
+    <details id="guide" open>
+      <summary>使い方</summary>
+
+      <h3>① このページで作る</h3>
+      <ol class="guide-steps">
+        <li>下の「デッキを作る・直す」で、カードを名前で探して「＋」を押す（2回押すと2枚）</li>
+        <li>エネルギーを1〜3種類選ぶ。20枚そろうとQRコードが出る</li>
+        <li>ゲームで「マイデッキ」→「新規作成」→「コードを読み取る」で読み込む</li>
+      </ol>
+
+      <h3>② AIに作ってもらう</h3>
+      <p>ChatGPT や Claude などに下のプロンプトを貼ってから、作りたいデッキを相談してください。
+        最後に「デッキURL」を出してくれるので、開けばQRコードが表示されます。</p>
+      <div class="actions">
+        <button id="copy-prompt" class="primary">プロンプトをコピー</button>
+        <button id="show-prompt">中身を見る</button>
+      </div>
+      <textarea id="prompt-text" class="hidden" rows="12" readonly></textarea>
+      <p class="note">AIはカードの番号を間違えることがあります。ページを開くとカード名とエラーが出るので、違っていたらAIに伝えて直してもらってください。</p>
+
+      <h3>③ デッキURLの書き方</h3>
+      <pre class="url-format">https://mozk-umino.github.io/mozk-poke2-qr/?n=<b>デッキ名</b>&amp;e=<b>エネルギー</b>&amp;d=<b>カード</b></pre>
+      <table class="guide-table"><tbody>
+        <tr><th>n</th><td>デッキ名（省略可）</td></tr>
+        <tr><th>e</th><td>エネルギーを漢字1文字で続けて書く（例: <code>雷</code>、<code>雷超</code>）。草 炎 水 雷 超 闘 悪 鋼 から1〜3種類</td></tr>
+        <tr><th>d</th><td>カードを <code>.</code> でつなぐ。1枚は <code>セット-番号</code>、2枚は末尾に <code>x2</code>（例: <code>B1a-24x2.A1-98x2.PROMO-A-7</code>）</td></tr>
+      </tbody></table>
+      <p class="note">デッキはちょうど20枚、同じ名前のカードは2枚まで。セットと番号はカード左下の収録記号です。</p>
+    </details>
+  </section>
+
   <!-- デッキ表示 -->
   <section id="deck-section" class="hidden">
     <h2 id="deck-name"></h2>

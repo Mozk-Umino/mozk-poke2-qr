@@ -102,3 +102,12 @@ footer { font-size: .76rem; color: var(--muted); margin-top: 24px; }
 a { color: var(--accent); }
 .en { color: var(--muted); font-size: .75rem; margin-left: 4px; }
 .guess { font-size: .68rem; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 0 4px; margin-left: 4px; vertical-align: 1px; white-space: nowrap; }
+.guide-steps { margin: 4px 0 0; padding-left: 1.4em; font-size: .9rem; }
+#guide h3 { margin: 16px 0 4px; font-size: .95rem; }
+#guide p { font-size: .9rem; margin: 4px 0; }
+#prompt-text { margin-top: 8px; font-size: 13px; }
+.url-format { white-space: pre-wrap; word-break: break-all; background: var(--code-bg); border-radius: 8px; padding: 8px 10px; font-size: .8rem; margin: 4px 0 8px; }
+.url-format b { color: var(--accent); }
+.guide-table th { width: 2em; color: var(--accent); font-family: ui-monospace, Menlo, monospace; text-align: left; vertical-align: top; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+.guide-table td { font-size: .86rem; }
+code { background: var(--code-bg); border-radius: 4px; padding: 0 4px; font-size: .85em; }

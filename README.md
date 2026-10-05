@@ -42,6 +42,16 @@ https://mozk-umino.github.io/mozk-poke2-qr/?n=ミライドンex&e=雷&d=B1a-24x2
   2. `npm run sync:skill` で MozkSkills（`~/.claude/skills/pokepoke-deck-url`）のコピーを更新し、MozkSkills 側で commit / push する
 - 本体はこのリポジトリの `skill/`。MozkSkills と claude.ai にあるのはコピーなので、直すのは必ずこちら
 
+### 使い方欄とAI用プロンプト
+ページ上部の「使い方」に、ページでの作り方・AI用プロンプトのコピー・デッキURLの書き方を置いている（デッキURLから開いたときは畳む）。
+
+**デッキURLの形式やデッキのルールを変えるときは、次の3つを同時に直す。**
+`test/guide.test.mjs` が、3つが同じ公開URLを指していることと、例のURLが正しいデッキになることを確かめる。
+
+- `skill/pokepoke-deck-url/SKILL.md`（Claude のスキル）
+- `ai-prompt.txt`（ほかの人が ChatGPT などに貼るプロンプト。ページの「プロンプトをコピー」で配る）
+- `index.html` の「使い方」欄
+
 ## 日本語名
 
 カードDBは英語名なので、ページを開いたときに日本語名へ変換している。
@@ -84,6 +94,7 @@ u8  エネルギー種類 （1草 2炎 3水 4雷 5超 6闘 7悪 8鋼）
 | `scripts/check-names.mjs` | 日本語名が未登録のカードの一覧を出す |
 | `vendor/qrcode.js` | [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)（MIT） |
 | `skill/` | Claude 用スキル |
+| `ai-prompt.txt` | ほかの人がAIに貼る用のプロンプト |
 | `test/` | `npm test` で実行 |
 
 非公式のファンツール。任天堂・クリーチャーズ・ゲームフリーク・株式会社ポケモンとは関係ない。
