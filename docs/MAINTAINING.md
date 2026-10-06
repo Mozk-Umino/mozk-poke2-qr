@@ -77,4 +77,4 @@
 ## 日本語名の赤入れ帳
 
 トレーナーズの日本語名を1枚ずつ確認する帳面。URLは `docs/names-review/.redline`。
-`docs/names-review/*.md` を MozkSkills の redline スキル（`redline.py`）で組み立てて Artifact にしている。
+`docs/names-review/*.md`（`1-trainers.md` `2-pokemon.md`）を MozkSkills の redline スキル（`redline.py`）で組み立てて Artifact にしている。

@@ -22,7 +22,7 @@ const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 // ツールの作者クレジット。デッキの作者と取り違えられないよう「ツール制作」と書く。
 // QRの下・保存するQR画像・まとめ画像・Markdown・HTML に入る
 const CREDIT = "ツール制作: もずく・らてっくす";
-const NAME_NOTE = "カード名の日本語表記は非公式のもので、一部推測を含みます。正確な名前はゲーム内でご確認ください。";
+const NAME_NOTE = "カード名の日本語表記は非公式のものです。正確な名前はゲーム内でご確認ください。";
 
 let database = null;
 let selectedEnergy = [];

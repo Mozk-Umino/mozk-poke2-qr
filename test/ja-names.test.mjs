@@ -59,8 +59,18 @@ test("スキルの lookup.py も同じ日本語名を返す", () => {
 });
 
 test("推測の日本語名は区別できる", () => {
-  assert.equal(japanese.name({ type: "trainer", name: "Arcade" }), "ゲームセンター");
-  assert.equal(japanese.isGuessed({ type: "trainer", name: "Arcade" }), true);
-  assert.equal(japanese.isGuessed({ type: "trainer", name: "Sabrina" }), false);
-  assert.equal(japanese.isGuessed({ type: "pokemon", name: "Pikachu" }), false);
+  const withGuess = new JapaneseNames({
+    species: {},
+    names: { pokemon: {}, trainers: { Sabrina: "ナツメ" }, trainersGuessed: { "Some Item": "なにかのどうぐ" } },
+  });
+  assert.equal(withGuess.name({ type: "trainer", name: "Some Item" }), "なにかのどうぐ");
+  assert.equal(withGuess.isGuessed({ type: "trainer", name: "Some Item" }), true);
+  assert.equal(withGuess.isGuessed({ type: "trainer", name: "Sabrina" }), false);
+  assert.equal(withGuess.isGuessed({ type: "pokemon", name: "Pikachu" }), false);
+});
+
+test("ゲームウィズで確認した公式表記になっている", () => {
+  assert.equal(japanese.trainerName("Soothing Shore"), "いやしの海辺");
+  assert.equal(japanese.trainerName("Copycat"), "モノマネむすめ");
+  assert.equal(japanese.trainerName("Helix Fossil"), "かいの化石");
 });
