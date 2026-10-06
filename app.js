@@ -15,6 +15,7 @@ import {
   parseDeckQuery,
 } from "./deck-codec.js";
 import { JapaneseNames } from "./ja-names.js";
+import { analyticsEnabled, track } from "./analytics.js";
 
 const $ = (id) => document.getElementById(id);
 const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
@@ -25,6 +26,7 @@ const CREDIT = "ツール制作: もずく・らてっくす";
 const NAME_NOTE = "カード名の日本語表記は非公式のものです。正確な名前はゲーム内でご確認ください。";
 
 let database = null;
+let qrTracked = false;
 let selectedEnergy = [];
 let currentDeck = null;
 
@@ -337,6 +339,10 @@ function render(spec) {
   $("publish-area").classList.toggle("hidden", !ready);
   if (ready) {
     $("qr").innerHTML = qrSvg(deck.payload);
+    if (!qrTracked) {
+      qrTracked = true;
+      track("qr_shown");
+    }
     $("card-preview").src = deckCardCanvas(deck).toDataURL("image/png");
   }
   document.title = deck.name ? `${deck.name} | ポケポケ デッキQR` : "ポケポケ デッキQR";
@@ -436,15 +442,27 @@ $("search-results").addEventListener("click", (event) => {
 $("import-button").addEventListener("click", () => importText($("import").value));
 
 $("save-qr").addEventListener("click", () => {
+  track("save_qr");
   if (currentDeck?.payload) saveCanvas(qrCanvas(currentDeck.payload), `${fileSafe(currentDeck.name)}_QR.png`);
 });
 $("save-card").addEventListener("click", () => {
+  track("save_card");
   if (currentDeck?.payload) saveCanvas(deckCardCanvas(currentDeck), `${fileSafe(currentDeck.name)}.png`);
 });
-$("copy-markdown").addEventListener("click", (event) => currentDeck && copyText(deckMarkdown(currentDeck), event.target));
-$("copy-html").addEventListener("click", (event) => currentDeck && copyText(deckHtml(currentDeck), event.target));
-$("copy-url").addEventListener("click", (event) => currentDeck && copyText(deckUrl(currentDeck), event.target));
+$("copy-markdown").addEventListener("click", (event) => {
+  track("copy_markdown");
+  if (currentDeck) copyText(deckMarkdown(currentDeck), event.target);
+});
+$("copy-html").addEventListener("click", (event) => {
+  track("copy_html");
+  if (currentDeck) copyText(deckHtml(currentDeck), event.target);
+});
+$("copy-url").addEventListener("click", (event) => {
+  track("copy_url");
+  if (currentDeck) copyText(deckUrl(currentDeck), event.target);
+});
 $("share-url").addEventListener("click", async (event) => {
+  track("share_url");
   if (!currentDeck) return;
   const url = deckUrl(currentDeck);
   if (navigator.share) {
@@ -469,6 +487,7 @@ async function loadPrompt() {
   return promptText;
 }
 $("copy-prompt").addEventListener("click", async (event) => {
+  track("copy_prompt");
   try {
     await copyText(await loadPrompt(), event.target);
   } catch {
@@ -503,6 +522,9 @@ async function showVersionInfo(records) {
 
 async function start() {
   renderEnergyPicker();
+  // アクセス解析を入れているときだけ、その開示を出す
+  if (analyticsEnabled) document.querySelectorAll(".analytics-note").forEach((el) => el.classList.remove("hidden"));
+  document.querySelector('a[href$="pokepoke-deck-url.zip"]')?.addEventListener("click", () => track("skill_download"));
   $("qr-credit").textContent = CREDIT;
   // デッキURLから開いたときは注意事項と使い方を畳んで、QRを主役にする
   if (/[?&](d|c)=/.test(location.search)) {
