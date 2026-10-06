@@ -5,7 +5,7 @@
 // GA4 の管理画面で「拡張計測機能 → ページの変更（ブラウザの履歴イベントに基づく）」を必ずオフにする
 // （このページは編集のたびに URL を書き換えるため、オンだとデッキ入りの URL が送られる）。
 
-export const GA_MEASUREMENT_ID = "";
+export const GA_MEASUREMENT_ID = "G-XX7LRGBW43";
 
 const enabled = Boolean(GA_MEASUREMENT_ID);
 
