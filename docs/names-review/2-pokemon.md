@@ -2,9 +2,9 @@
 
 # ポケモンの例外（18）
 
-ポケモン名は自動変換だが、フォルム違いなど自動で変換できないものだけ手で入れている。**まだ公式表記と照合していない**（マーク `ai`）。
+ポケモン名は自動変換だが、フォルム違いなど自動で変換できないものだけ手で入れている。すべてゲームウィズの表記で確認済み（2026-10-12、mozk が確認）。マーク `you` は mozk が確認したもの。違っていれば赤を。
 
-<!--ai:Castform_Sunny_Form-->
+<!--you:Castform_Sunny_Form-->
 
 ### Castform Sunny Form
 
@@ -12,7 +12,7 @@
 - 読み（カード画像のファイル名）: `POWALENTAIYOUNOSUGATA`
 - 収録: PROMO-B-57, B3-24
 
-<!--ai:Castform_Rainy_Form-->
+<!--you:Castform_Rainy_Form-->
 
 ### Castform Rainy Form
 
@@ -20,7 +20,7 @@
 - 読み（カード画像のファイル名）: `POWALENAMAMIZUNOSUGATA`
 - 収録: B3-40
 
-<!--ai:Castform_Snowy_Form-->
+<!--you:Castform_Snowy_Form-->
 
 ### Castform Snowy Form
 
@@ -28,7 +28,7 @@
 - 読み（カード画像のファイル名）: `POWALENYUKIGUMONOSUGATA`
 - 収録: B3-41
 
-<!--ai:Heat_Rotom-->
+<!--you:Heat_Rotom-->
 
 ### Heat Rotom
 
@@ -36,7 +36,7 @@
 - 読み（カード画像のファイル名）: `HEAT ROTOM`
 - 収録: A2-30
 
-<!--ai:Wash_Rotom-->
+<!--you:Wash_Rotom-->
 
 ### Wash Rotom
 
@@ -44,7 +44,7 @@
 - 読み（カード画像のファイル名）: `WASH ROTOM`
 - 収録: A2-47
 
-<!--ai:Frost_Rotom-->
+<!--you:Frost_Rotom-->
 
 ### Frost Rotom
 
@@ -52,7 +52,7 @@
 - 読み（カード画像のファイル名）: `FROST ROTOM`
 - 収録: A2-48
 
-<!--ai:Fan_Rotom-->
+<!--you:Fan_Rotom-->
 
 ### Fan Rotom
 
@@ -60,7 +60,7 @@
 - 読み（カード画像のファイル名）: `SPIN ROTOM`
 - 収録: A2-142
 
-<!--ai:Mow_Rotom-->
+<!--you:Mow_Rotom-->
 
 ### Mow Rotom
 
@@ -68,23 +68,23 @@
 - 読み（カード画像のファイル名）: `CUT ROTOM`
 - 収録: A2-21
 
-<!--ai:Dusk_Mane_Necrozma-->
+<!--you:Dusk_Mane_Necrozma-->
 
 ### Dusk Mane Necrozma
 
-- 日本語名: **日食ネクロズマ（exが付く場合は末尾にex）**
+- 日本語名: **ネクロズマ たそがれのたてがみ（exが付く場合は末尾にex）**
 - 読み（カード画像のファイル名）: `NECROZMATASOGARENOTATEGAMI`
 - 収録: PROMO-A-79
 
-<!--ai:Dawn_Wings_Necrozma-->
+<!--you:Dawn_Wings_Necrozma-->
 
 ### Dawn Wings Necrozma
 
-- 日本語名: **月食ネクロズマ（exが付く場合は末尾にex）**
+- 日本語名: **ネクロズマ あかつきのつばさ（exが付く場合は末尾にex）**
 - 読み（カード画像のファイル名）: `NECROZMAAKATSUKINOTSUBASA`
 - 収録: PROMO-A-78
 
-<!--ai:Ultra_Necrozma-->
+<!--you:Ultra_Necrozma-->
 
 ### Ultra Necrozma
 
@@ -92,7 +92,7 @@
 - 読み（カード画像のファイル名）: `?`
 - 収録: -
 
-<!--ai:Teal_Mask_Ogerpon-->
+<!--you:Teal_Mask_Ogerpon-->
 
 ### Teal Mask Ogerpon
 
@@ -100,7 +100,7 @@
 - 読み（カード画像のファイル名）: `OGERPONMIDORINOMEN`
 - 収録: B4b-27, B4b-257
 
-<!--ai:Teal_MaskOgerpon-->
+<!--you:Teal_MaskOgerpon-->
 
 ### Teal MaskOgerpon
 
@@ -108,7 +108,7 @@
 - 読み（カード画像のファイル名）: `OGERPONMIDORINOMEN`
 - 収録: B4-19
 
-<!--ai:Wellspring_Mask_Ogerpon-->
+<!--you:Wellspring_Mask_Ogerpon-->
 
 ### Wellspring Mask Ogerpon
 
@@ -116,7 +116,7 @@
 - 読み（カード画像のファイル名）: `OGERPONIDONOMEN`
 - 収録: B2-48
 
-<!--ai:Hearthflame_Mask_Ogerpon-->
+<!--you:Hearthflame_Mask_Ogerpon-->
 
 ### Hearthflame Mask Ogerpon
 
@@ -124,7 +124,7 @@
 - 読み（カード画像のファイル名）: `OGERPONKAMADONOMEN`
 - 収録: B2-27, B4b-51, B4b-272
 
-<!--ai:Cornerstone_Mask_Ogerpon-->
+<!--you:Cornerstone_Mask_Ogerpon-->
 
 ### Cornerstone Mask Ogerpon
 
@@ -132,7 +132,7 @@
 - 読み（カード画像のファイル名）: `OGERPONISHIZUENOMEN`
 - 収録: B2-93
 
-<!--ai:Single_Strike_Urshifu-->
+<!--you:Single_Strike_Urshifu-->
 
 ### Single Strike Urshifu
 
@@ -140,7 +140,7 @@
 - 読み（カード画像のファイル名）: `WULAOSUICHIGEKINOKATA`
 - 収録: B3-113
 
-<!--ai:Rapid_Strike_Urshifu-->
+<!--you:Rapid_Strike_Urshifu-->
 
 ### Rapid Strike Urshifu
 
