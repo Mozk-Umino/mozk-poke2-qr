@@ -75,6 +75,7 @@
   "Fragrant Forest": "あまくかおる森",
   "Full Heal": "なんでもなおし",
   "Future Booster Energy Capsule": "ブーストエナジー未来",
+  "Genome Converter Y": "ゲノムコンバーターY",
   "Giant Cape": "大きなマント",
   "Giovanni": "サカキ",
   "Gladion": "グラジオ",
@@ -198,9 +199,7 @@
   "Will": "イツキ",
   "X Speed": "スピーダー"
  },
- "trainersGuessed": {
-  "Genome Converter Y": "ゲノムコンバーターY"
- },
+ "trainersGuessed": {},
  "readingCheckSkip": [
   "Acerola",
   "Arcade",
