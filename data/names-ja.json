@@ -185,7 +185,22 @@
   "Will": "イツキ",
   "X Speed": "スピーダー"
  },
- "trainersGuessed": {},
+ "trainersGuessed": {
+  "Abandoned Station": "さびれたスタンド",
+  "Blue’s Provocation": "グリーンのちょうはつ",
+  "Eviolite": "しんかのきせき",
+  "Full Heal": "なんでもなおし",
+  "Genome Converter Y": "ゲノムコンバーターY",
+  "Light Ball": "でんきだま",
+  "Lorelei": "カンナ",
+  "Max Repel": "ゴールドスプレー",
+  "Poké Mart Guy": "フレンドリィショップのおにいさん",
+  "Rika": "チリ",
+  "Rising Star": "ホープトレーナー",
+  "Serena’s Choice": "セレナのせんたく",
+  "Super Potion": "いいキズぐすり",
+  "Sweet Honey": "あまいミツ"
+ },
  "readingCheckSkip": [
   "Acerola",
   "Arcade",

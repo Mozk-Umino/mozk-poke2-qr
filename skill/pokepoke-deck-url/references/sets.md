@@ -28,8 +28,11 @@
 | B4 | Ruler of the Skies（天空の支配者） | 2026-07-30 |
 | B4a | Team Rocket's Ambition | 2026-08-27 |
 | B4b | Deluxe Pack: Mega | 2026-09-30 |
+| C1 | Dual Fusion | 2026-10-29 |
+| SP1 | Special Pack: First Partners | 2026-10-29 |
 | PROMO-A | プロモA | 2024-10-30〜 |
 | PROMO-B | プロモB | 2025-10-30〜 |
+| PROMO-C | プロモC | 2026-10-29〜 |
 
 - A4b・B4b（デラックスパック）は過去カードの再録が多い。再録カードは元の通常版の番号で書く
 - PROMO は番号の前にハイフンが2つ入る（例 `PROMO-A-7`）
