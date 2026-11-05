@@ -25,7 +25,7 @@ const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 const CREDIT = "ツール制作: もずく・らてっくす";
 const NAME_NOTE = "カード名の日本語表記は非公式のものです。正確な名前はゲーム内でご確認ください。";
 // SNS投稿のテンプレに入れるハッシュタグ。投稿を探せるようにするためのもの
-const POST_HASHTAGS = "#ポケポケ #デッキQR";
+const POST_HASHTAGS = "#ポケポケ #ポケポケデッキQR";
 
 let database = null;
 let qrTracked = false;
