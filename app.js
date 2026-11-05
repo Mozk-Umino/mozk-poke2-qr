@@ -353,9 +353,6 @@ function cardTable(title, cards) {
 function render(spec) {
   const deck = buildDeck(spec, database);
   currentDeck = deck;
-  // デッキが変わったら、古い内容の投稿プレビューは閉じる
-  pendingPost = null;
-  $("post-preview").classList.add("hidden");
   const hasContent = spec.cards.length > 0 || spec.errors.length > 0;
   $("deck-section").classList.toggle("hidden", !hasContent);
   if (!hasContent) return;
@@ -493,41 +490,18 @@ $("copy-url").addEventListener("click", (event) => {
   track("copy_url");
   if (currentDeck) copyText(deckUrl(currentDeck), event.target);
 });
-let pendingPost = null;
-
-// 「Xに投稿」: いきなり投稿画面を開かず、まずプレビュー（文面＋まとめ画像）を出して確認してもらう
-$("post-x").addEventListener("click", async () => {
+$("post-x").addEventListener("click", async (event) => {
+  track("post_x");
   if (!currentDeck?.payload) return;
   const deck = currentDeck;
-  const canvas = deckCardCanvas(deck);
-  pendingPost = {
-    deck,
-    text: deckPostText(deck),
-    file: await canvasFile(canvas, `${fileSafe(deck.name)}.png`),
-  };
-  $("post-preview-text").textContent = pendingPost.text;
-  $("post-preview-img").src = canvas.toDataURL("image/png");
-  $("post-preview").classList.remove("hidden");
-  $("post-preview").scrollIntoView({ block: "nearest", behavior: "smooth" });
-});
-
-$("post-cancel").addEventListener("click", () => {
-  pendingPost = null;
-  $("post-preview").classList.add("hidden");
-});
-
-$("post-confirm").addEventListener("click", async (event) => {
-  track("post_x");
-  if (!pendingPost) return;
-  const { deck, text, file } = pendingPost;
   const button = event.target;
+  const text = deckPostText(deck);
+  const file = await canvasFile(deckCardCanvas(deck), `${fileSafe(deck.name)}.png`);
 
   // スマホなど共有シートが使える環境: まとめ画像とテンプレを一緒に渡す（Xアプリを選べば画像つきで投稿できる）
   if (file && matchMedia("(pointer: coarse)").matches && navigator.canShare?.({ files: [file], text })) {
     try {
       await navigator.share({ files: [file], text });
-      pendingPost = null;
-      $("post-preview").classList.add("hidden");
       return;
     } catch (error) {
       if (error.name === "AbortError") return;
