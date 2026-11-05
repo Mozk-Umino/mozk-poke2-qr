@@ -86,4 +86,4 @@
 
 - デッキURLの `?` 以降にはデッキの内容が入るので、送る URL は `?` 以降を落としている。デッキの内容は送らない
 - **GA4 の管理画面で「データストリーム → 拡張計測機能 → ページの変更（ブラウザの履歴イベントに基づく）」をオフにする。** このページは編集のたびに URL を書き換えるので、オンのままだとデッキ入りの URL が送られる
-- 送っているイベント: `page_view`（`opened_with_deck`: デッキURLから開いたか）、`qr_shown`、`save_qr`、`save_card`、`copy_markdown`、`copy_html`、`copy_url`、`share_url`、`copy_prompt`、`skill_download`
+- 送っているイベント: `page_view`（`opened_with_deck`: デッキURLから開いたか）、`qr_shown`、`save_qr`、`save_card`、`copy_markdown`、`copy_html`、`copy_url`、`share_url`、`post_x`、`copy_prompt`、`skill_download`

@@ -24,6 +24,8 @@ const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 // QRの下・保存するQR画像・まとめ画像・Markdown・HTML に入る
 const CREDIT = "ツール制作: もずく・らてっくす";
 const NAME_NOTE = "カード名の日本語表記は非公式のものです。正確な名前はゲーム内でご確認ください。";
+// SNS投稿のテンプレに入れるハッシュタグ（#なし、カンマ区切り）。投稿を探せるようにするためのもの
+const POST_HASHTAGS = "ポケポケ,デッキQR";
 
 let database = null;
 let qrTracked = false;
@@ -47,6 +49,16 @@ function fileSafe(name) {
 
 function deckUrl(deck) {
   return `${location.origin}${location.pathname}?${deckQuery(deck)}`;
+}
+
+// Xの投稿画面を開くURL。文面・デッキURL・ハッシュタグを下書きとして渡す（投稿は本人が行う）
+function deckPostUrl(deck) {
+  const params = new URLSearchParams({
+    text: `ポケポケのデッキ「${deck.name || "名前なしデッキ"}」を作りました`,
+    url: deckUrl(deck),
+    hashtags: POST_HASHTAGS,
+  });
+  return `https://x.com/intent/tweet?${params}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -460,6 +472,10 @@ $("copy-html").addEventListener("click", (event) => {
 $("copy-url").addEventListener("click", (event) => {
   track("copy_url");
   if (currentDeck) copyText(deckUrl(currentDeck), event.target);
+});
+$("post-x").addEventListener("click", () => {
+  track("post_x");
+  if (currentDeck?.payload) window.open(deckPostUrl(currentDeck), "_blank", "noopener");
 });
 $("share-url").addEventListener("click", async (event) => {
   track("share_url");
