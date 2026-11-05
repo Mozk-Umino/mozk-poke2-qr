@@ -24,8 +24,8 @@ const FONT = '"Hiragino Sans", "Noto Sans JP", system-ui, sans-serif';
 // QRの下・保存するQR画像・まとめ画像・Markdown・HTML に入る
 const CREDIT = "ツール制作: もずく・らてっくす";
 const NAME_NOTE = "カード名の日本語表記は非公式のものです。正確な名前はゲーム内でご確認ください。";
-// SNS投稿のテンプレに入れるハッシュタグ（#なし、カンマ区切り）。投稿を探せるようにするためのもの
-const POST_HASHTAGS = "ポケポケ,デッキQR";
+// SNS投稿のテンプレに入れるハッシュタグ。投稿を探せるようにするためのもの
+const POST_HASHTAGS = "#ポケポケ #デッキQR";
 
 let database = null;
 let qrTracked = false;
@@ -51,14 +51,19 @@ function deckUrl(deck) {
   return `${location.origin}${location.pathname}?${deckQuery(deck)}`;
 }
 
-// Xの投稿画面を開くURL。文面・デッキURL・ハッシュタグを下書きとして渡す（投稿は本人が行う）
+// SNS投稿のテンプレ。文面 → デッキURL → ハッシュタグ を改行でつなぐ
+function deckPostText(deck) {
+  return [
+    `ポケポケのデッキ「${deck.name || "名前なしデッキ"}」を作りました`,
+    deckUrl(deck),
+    POST_HASHTAGS,
+  ].join("\n");
+}
+
+// Xの投稿画面を開くURL。テンプレを下書きとして渡す（投稿は本人が行う）。
+// インテントには画像を渡せないので、画像は共有シート／クリップボード経由で別に渡す
 function deckPostUrl(deck) {
-  const params = new URLSearchParams({
-    text: `ポケポケのデッキ「${deck.name || "名前なしデッキ"}」を作りました`,
-    url: deckUrl(deck),
-    hashtags: POST_HASHTAGS,
-  });
-  return `https://x.com/intent/tweet?${params}`;
+  return `https://x.com/intent/tweet?text=${encodeURIComponent(deckPostText(deck))}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -226,6 +231,18 @@ function deckCardCanvas(deck) {
   context.fillText(CREDIT, width - pad, height - 36);
   context.textAlign = "left";
   return canvas;
+}
+
+async function canvasFile(canvas, filename) {
+  const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+  return blob ? new File([blob], filename, { type: "image/png" }) : null;
+}
+
+// ボタンのラベルを一時的に変えて、結果を伝える
+function flashLabel(button, label) {
+  const original = button.textContent;
+  button.textContent = label;
+  setTimeout(() => (button.textContent = original), 4000);
 }
 
 async function saveCanvas(canvas, filename) {
@@ -473,9 +490,38 @@ $("copy-url").addEventListener("click", (event) => {
   track("copy_url");
   if (currentDeck) copyText(deckUrl(currentDeck), event.target);
 });
-$("post-x").addEventListener("click", () => {
+$("post-x").addEventListener("click", async (event) => {
   track("post_x");
-  if (currentDeck?.payload) window.open(deckPostUrl(currentDeck), "_blank", "noopener");
+  if (!currentDeck?.payload) return;
+  const deck = currentDeck;
+  const button = event.target;
+  const text = deckPostText(deck);
+  const file = await canvasFile(deckCardCanvas(deck), `${fileSafe(deck.name)}.png`);
+
+  // スマホなど共有シートが使える環境: まとめ画像とテンプレを一緒に渡す（Xアプリを選べば画像つきで投稿できる）
+  if (file && matchMedia("(pointer: coarse)").matches && navigator.canShare?.({ files: [file], text })) {
+    try {
+      await navigator.share({ files: [file], text });
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+      // 共有できなければ下の方法に切り替える
+    }
+  }
+
+  // それ以外: 画像をクリップボードにコピーしてから投稿画面を開く（投稿画面で貼り付けると画像が付く）
+  let copied = false;
+  if (file && navigator.clipboard?.write && window.ClipboardItem) {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": file })]);
+      copied = true;
+    } catch { /* コピーできない環境では文面だけで開く */ }
+  }
+  window.open(deckPostUrl(deck), "_blank", "noopener");
+  flashLabel(
+    button,
+    copied ? "画像をコピーしました。投稿画面で貼り付けてください" : "投稿画面を開きました（画像は「まとめ画像を保存」から添付を）",
+  );
 });
 $("share-url").addEventListener("click", async (event) => {
   track("share_url");
