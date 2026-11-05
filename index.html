@@ -102,7 +102,16 @@
         <button id="share-url">URLを共有</button>
         <button id="post-x">Xに投稿</button>
       </div>
-      <p class="note post-note">「Xに投稿」は、スマホではまとめ画像つきの共有画面が開きます。PCでは画像をコピーしてから投稿画面が開くので、投稿画面で貼り付けるとまとめ画像（QRつき）が付きます。</p>
+      <p class="note post-note">「Xに投稿」を押すと、まず投稿プレビュー（文面とまとめ画像）が出ます。スマホではまとめ画像つきの共有画面、PCでは画像をコピーしてから投稿画面が開くので、投稿画面で貼り付けるとまとめ画像（QRつき）が付きます。</p>
+      <div id="post-preview" class="hidden">
+        <p class="note">投稿プレビュー（まだ投稿していません）</p>
+        <p id="post-preview-text" class="post-preview-text"></p>
+        <img id="post-preview-img" class="card-preview" alt="投稿に付くまとめ画像">
+        <div class="actions">
+          <button id="post-confirm" class="primary">この内容で投稿する</button>
+          <button id="post-cancel">やめる</button>
+        </div>
+      </div>
       <details class="howto">
         <summary>ゲームでの読み込み方</summary>
         <ol>
